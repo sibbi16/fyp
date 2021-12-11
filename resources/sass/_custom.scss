@@ -122,6 +122,15 @@ header{
     .logo{
         width: 250px;
     }
+    + .login-bg{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('/images/login_background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
 #banner{
     background-image: url('/images/coming_soon.jpg');
