@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,10 +10,12 @@
     <title>Sourcers</title>
 
 </head>
+
 <body>
     @include('layouts.website.partials.header')
-        {{ $slot }}
+    {{ $slot }}
     @include('layouts.website.partials.footer')
     {{$script ?? ""}}
 </body>
+
 </html>

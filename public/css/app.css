@@ -10138,12 +10138,14 @@ header {
   align-items: center;
 }
 header .logo {
-  width: 250px;
+  width: 150px;
 }
-header + .login-bg {
+header + .authentication-bg {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 97px;
+  padding-bottom: 40px;
   min-height: 100vh;
   background-image: url("/images/login_background.jpg");
   background-repeat: no-repeat;
@@ -10169,13 +10171,11 @@ header + .login-bg {
 }
 
 footer {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
   text-align: center;
   font-size: 20px;
   padding: 20px 0px;
-  z-index: 90;
+  z-index: 999;
+  background-color: #EEBC81;
 }
 footer a {
   color: goldenrod;

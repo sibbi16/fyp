@@ -1,5 +1,5 @@
 <x-website-layout>
-    <div class="login-bg">
+    <div class="authentication-bg">
         <x-auth-card>
             <div class="card-body">
                 <!-- Session Status -->
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="mb-0">
-                        <div class="d-flex justify-content-end align-items-baseline">
+                        <div class="d-flex justify-content-between align-items-baseline">
                             @if (Route::has('password.request'))
                                 <a class="text-muted me-3" href="{{ route('password.request') }}">
                                     {{ __('Forgot your password?') }}
