@@ -64,8 +64,14 @@ class RegisteredUserController extends Controller
             'company_address' => $request->company_address,
             'company_phone' => $request->company_phone,
             'password' => Hash::make($request->password),
-            'profile_image'=>$profile_image,
+            'profile_image'=>$profile_image ?? Null,
         ]);
+        if($request->identity == "1"){
+            $user->assignRole('company');
+        }
+        elseif($request->identity == "0"){
+            $user->assignRole('individual');
+        }
 
         event(new Registered($user));
 
