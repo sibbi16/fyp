@@ -11,7 +11,7 @@
     @auth
     <x-dropdown id="navbarDropdown">
         <x-slot name="trigger">
-            {{ Auth::user()->name }}
+            {{ Auth::user()->fname }}
         </x-slot>
 
         <x-slot name="content">
