@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'fname' => 'Administrator',
-                'lname' => 'sibs',
+                'lname' => 'Testing',
                 'email' => 'admin@mail.com',
                 'phone' => '03155035206',
                 'address' => 'house # 7D',
@@ -34,23 +34,33 @@ class UserSeeder extends Seeder
             ],
             [
                 'fname' => 'Company',
-                'lname' => 'Test',
+                'lname' => 'Testing',
                 'email' => 'company@mail.com',
                 'phone' => '03355035206',
                 'address' => 'house # 2D',
                 'company_address'=> 'testing address for company',
                 'company_phone'=> '0516739887',
+                'type' => '1',
                 'password' => Hash::make('123456789'),
                 'role' => 'company',
             ],
             [
-                'fname' => 'sibghat',
+                'fname' => 'individual',
                 'lname' => 'Testing',
-                'email' => 'sibghat@mail.com',
+                'email' => 'individual@mail.com',
                 'phone' => '03155035206',
                 'address' => 'house # 10D',
+                'type' => '2',
                 'password' => Hash::make('123456789'),
-                'role' => 'individual',
+            ],
+            [
+                'fname' => 'Shop Keeper',
+                'lname' => 'Testing',
+                'email' => 'shopkeeper@mail.com',
+                'phone' => '03155035206',
+                'address' => 'house # 10D',
+                'type' => '3',
+                'password' => Hash::make('123456789'),
             ],
         ];
         foreach ($users as $user) {

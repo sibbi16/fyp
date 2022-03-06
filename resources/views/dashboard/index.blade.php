@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-dashboard-layout>
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">
             @can('view admin dashboard')
@@ -26,4 +26,4 @@
             @endcan
         </div>
     </div>
-</x-app-layout>
+</x-dashboard-layout>

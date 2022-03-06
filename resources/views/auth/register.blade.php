@@ -82,12 +82,12 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Select Identity</label>
+                                <label>Select Type</label>
                                 <select id="identity" class="form-control @error('identity') is-invalid @enderror"
                                     name="identity">
-                                    <option value="" disabled selected>Select Identity</option>
-                                    @foreach (App\Models\User:: $identities as $identity => $value)
-                                    <option value="{{$identity}}">{{$value}}</option>
+                                    <option value="" disabled selected>Select Type </option>
+                                    @foreach (App\Models\User:: $types as $key => $value)
+                                    <option value="{{$key}}">{{$value}}</option>
                                     @endforeach
                                 </select>
                             </div>

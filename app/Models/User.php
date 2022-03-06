@@ -52,8 +52,9 @@ class User extends Authenticatable
         'profile_image' =>'array',
     ];
 
-    public static $identities = [
-        0 => 'Individual',
+    public static $types = [
         1 => 'Company',
+        2 => 'Individual',
+        3 => 'Shop Keeper',
     ];
 }

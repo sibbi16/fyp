@@ -7,15 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/images/logo.png">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    {{$style ?? ""}}
     <title>Sourcers</title>
+    
+    {{$style ?? ""}}
 
 </head>
 
 <body>
-    @include('layouts.website.partials.header')
+    @include('layouts.partials.website.header')
     {{ $slot }}
-    @include('layouts.website.partials.footer')
+    @include('layouts.partials.website.footer')
     {{$script ?? ""}}
 </body>
 
