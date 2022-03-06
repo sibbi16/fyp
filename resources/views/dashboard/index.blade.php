@@ -16,7 +16,7 @@
     <div class="card my-4">
         <div class="card-body">
             @can('view admin dashboard')
-            You're logged in as Admin
+            You're logged in as Admin Admin
             @endcan
             @can('view individual dashboard')
             You're logged in as individual
