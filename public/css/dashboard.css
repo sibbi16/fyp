@@ -24969,3 +24969,8 @@ h3 {
   -webkit-animation-name: slideIn;
   animation-name: slideIn;
 }
+
+.c-footer {
+  margin: 0 auto;
+  display: block;
+}

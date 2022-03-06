@@ -1,7 +1,8 @@
 <x-website-layout>
     <div class="authentication-bg">
-        <x-auth-card>
+        <x-auth-card maxWidth=600px>
             <div class="card-body">
+                <h2 class="text-center font-weight-bold pt-2">Login</h2>
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-3" :status="session('status')" />
 

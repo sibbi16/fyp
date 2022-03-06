@@ -1,6 +1,7 @@
 <x-website-layout>
     <div class="authentication-bg">
-        <x-auth-card>
+        <x-auth-card maxWidth=800px>
+            <h2 class="text-center font-weight-bold pt-2">Register</h2>
             <div class="card-body">
                 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
