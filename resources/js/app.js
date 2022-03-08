@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('@coreui/coreui/dist/js/coreui');
 
 // import Alpine from 'alpinejs';
 

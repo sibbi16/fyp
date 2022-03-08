@@ -11,14 +11,17 @@
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="vendor/@coreui/icons/svg/free.svg#cil-speedometer"></use>
 
-                </svg> Dashboard<span class="badge badge-info">NEW</span></a>
+                </svg> Dashboard</a>
         </li>
         @can('view admin dashboard')
         <li class="c-sidebar-nav-title">user</li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="colors.html">
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{route('dashboard.users.index')}}">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="vendor/@coreui/icons/svg/free.svg#cil-user"></use>
-                </svg> Users</a>
+                </svg>
+                Users
+            </a>
         </li>
         @endcan
 

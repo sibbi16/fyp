@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
             [
                 'fname' => 'Administrator',
                 'lname' => 'Testing',
+                'username'=>'administrator-testing',
                 'email' => 'admin@mail.com',
                 'phone' => '03155035206',
                 'address' => 'house # 7D',
@@ -35,6 +36,7 @@ class UserSeeder extends Seeder
             [
                 'fname' => 'Company',
                 'lname' => 'Testing',
+                'username'=>'company-testing',
                 'email' => 'company@mail.com',
                 'phone' => '03355035206',
                 'address' => 'house # 2D',
@@ -45,8 +47,9 @@ class UserSeeder extends Seeder
                 'role' => 'company',
             ],
             [
-                'fname' => 'individual',
+                'fname' => 'Individual',
                 'lname' => 'Testing',
+                'username'=>'individual-testing',
                 'email' => 'individual@mail.com',
                 'phone' => '03155035206',
                 'address' => 'house # 10D',
@@ -56,6 +59,7 @@ class UserSeeder extends Seeder
             [
                 'fname' => 'Shop Keeper',
                 'lname' => 'Testing',
+                'username'=>'shopkeeper-testing',
                 'email' => 'shopkeeper@mail.com',
                 'phone' => '03155035206',
                 'address' => 'house # 10D',

@@ -34,11 +34,17 @@ class RoleAndPermissionSeeder extends Seeder
                 'delete user profile',
 
             ],
+
             'company' => [
                'view company dashboard',
             ],
+
             'individual' => [
                 'view individual dashboard',
+             ],
+
+             'shopkeeper' => [
+                'view shopkeeper dashboard',
              ],
         ];
         $insertPermissions = function ($role) use ($permissionsByRole) {
@@ -52,6 +58,7 @@ class RoleAndPermissionSeeder extends Seeder
             'admin' => $insertPermissions('admin'),
             'company' => $insertPermissions('company'),
             'individual' => $insertPermissions('individual'),
+            'shopkeeper' => $insertPermissions('shopkeeper'),
 
         ];
         foreach ($permissionIdsByRole as $role => $permissionIds) {

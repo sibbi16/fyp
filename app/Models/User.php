@@ -22,10 +22,11 @@ class User extends Authenticatable
     protected $fillable = [
         'fname',
         'lname',
+        'username',
         'email',
         'phone',
         'address',
-        'identity',
+        'type',
         'company_address',
         'company_phone',
         'profile_image',
@@ -57,4 +58,15 @@ class User extends Authenticatable
         2 => 'Individual',
         3 => 'Shop Keeper',
     ];
+
+     // setting slug
+     public function setSlugAttribute($username)
+     {
+         $this->username = str_replace(" " , "-" , strtolower($username));
+     }
+
+     public function getTypeTextAttribute()
+     {
+         return User::$types[$this->type] ?? 'Admin';
+     }
 }

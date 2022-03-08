@@ -50,10 +50,11 @@
             </svg>
         </button>
     </ul>
-
-    <div class="c-subheader px-3 py-3">
-        <div class="container">
-            {{ $header }}
-        </div>
+    @if($breadcrumb)
+    <div class="c-subheader px-3">
+        <ol class="breadcrumb border-0 m-0">
+            {{ $breadcrumb ?? '' }}
+        </ol>
     </div>
+    @endif
 </header>

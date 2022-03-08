@@ -41,9 +41,9 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone'=>['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'identity' => ['required', 'string', Rule::in(['1','0'])],
-            'company_address' => Rule::requiredIf($request->identity == "1"),
-            'company_phone' => Rule::requiredIf($request->identity == "1"),
+            'type' => ['required', 'string', Rule::in(['1','2','3'])],
+            'company_address' => Rule::requiredIf($request->type == "1"),
+            'company_phone' => Rule::requiredIf($request->type == "1"),
             'profile_image' => ['nullable', 'image', 'mimes:jpeg,png'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -57,20 +57,24 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'fname' => $request->fname,
             'lname' => $request->lname,
+            'username'=>$request->fname. " " .$request->lname,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
-            'identity' => $request->identity,
+            'type' => $request->type,
             'company_address' => $request->company_address,
             'company_phone' => $request->company_phone,
             'password' => Hash::make($request->password),
             'profile_image'=>$profile_image ?? Null,
         ]);
-        if($request->identity == "1"){
+        if($request->type == "1"){
             $user->assignRole('company');
         }
-        elseif($request->identity == "0"){
+        elseif($request->type == "2"){
             $user->assignRole('individual');
+        }
+        elseif($request->type == "3"){
+            $user->assignRole('shopkeeper');
         }
 
         event(new Registered($user));
