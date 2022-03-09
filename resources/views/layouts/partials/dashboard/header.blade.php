@@ -20,24 +20,22 @@
         <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#"
                 role="button" aria-haspopup="true" aria-expanded="false">
                 <div class="c-avatar">
-                    <img class="c-avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com">
+                    <img class="c-avatar-img" src="{{ auth()->user()->avatar_url}}" alt="{{auth()->user()->initials}}">
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
                 <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
-                <a class="dropdown-item" href="#">
-                    <svg class="c-icon mfe-2">
-                        <use xlink:href="vendor/@coreui/icons/svg/free.svg#cil-user"></use>
-                    </svg> Profile
+                <a class="dropdown-item" href="{{route('dashboard.users.show', auth()->user()->username)}}">
+                    <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-user" />
+                    Profile
                 </a>
                 <form method="POST" id="logout-form" action="{{ route('logout') }}">
                     @csrf
                 </form>
                 <a class="dropdown-item" href="#"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <svg class="c-icon mfe-2">
-                        <use xlink:href="vendor/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                    </svg> Logout
+                    <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-account-logout" />
+                    Logout
                 </a>
 
 

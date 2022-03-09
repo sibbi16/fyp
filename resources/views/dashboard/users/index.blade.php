@@ -7,6 +7,13 @@
         <li class="breadcrumb-item"><a href="#">Users</a></li>
         <li class="breadcrumb-item active">List</li>
     </x-slot>
+    <x-slot name="scripts">
+        <script>
+            $(document).ready(function() {
+                 $('#userIdList').DataTable();
+            });
+        </script>
+    </x-slot>
     <div>
         <div class="row">
             <div class="col-12">
@@ -20,6 +27,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Sr. #</th>
+                                    <th scope="col" class="text-center">Avatar</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Type</th>
                                     <th scope="col">Created On</th>
@@ -30,8 +38,14 @@
                                 @foreach ($users as $user)
                                 <tr>
                                     <td scope="row">{{ $loop->index + 1 }}</td>
+                                    <td class="text-center">
+                                        <div class="c-avatar">
+                                            <img class="c-avatar-img" src="{{ $user->avatar_url }}" alt="{{ $user->initials }}">
+                                        </div>
+                                    </td>
                                     <td>
-                                        {{ $user->fname }}
+                                        {{ $user->name }}
+                                        <div class="text-muted">{{ $user->email }}</div>
                                     </td>
                                     <td>{{ $user->type_text }}</td>
                                     <td>
@@ -42,7 +56,7 @@
                                             <a href="{{ route('dashboard.users.show', $user) }}"
                                                 class="btn btn-info">View</a>
                                             <a href="{{ route('dashboard.users.edit', $user) }}"
-                                                class="btn btn-warning">Edit</a>
+                                                class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deleteuserModel{{ $user->id }}">Delete</button>
                                         </div>
@@ -83,10 +97,6 @@
         </div>
         @endforeach --}}
     </div>
-    <x-slot name="scripts">
-        <script>
-            $('#userIdList').DataTable();
-        </script>
-    </x-slot>
+
 
 </x-dashboard-layout>

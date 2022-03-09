@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
         if($request->hasFile('profile_image')){
             $profile_image = [
                 'original_name' => $request->file('profile_image')->getClientOriginalName(),
-                'server_path' => $request->file('profile_image')->store('/profile_images', ['disk' => 'public']),
+                'server_path' => $request->file('profile_image')->store('profile_images', ['disk' => 'public']),
             ];
         }
 

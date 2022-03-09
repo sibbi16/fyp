@@ -7,19 +7,16 @@
     </div>
 
     <ul class="c-sidebar-nav">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
-                <svg class="c-sidebar-nav-icon">
-                    <use xlink:href="vendor/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-
-                </svg> Dashboard</a>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('dashboard.index')}}">
+            <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-speedometer" />
+                Dashboard
+            </a>
         </li>
         @can('view admin dashboard')
         <li class="c-sidebar-nav-title">user</li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{route('dashboard.users.index')}}">
-                <svg class="c-sidebar-nav-icon">
-                    <use xlink:href="vendor/@coreui/icons/svg/free.svg#cil-user"></use>
-                </svg>
+            <a class="c-sidebar-nav-link  @if (request()->routeIs('dashboard.users.*')) c-active @endif" href="{{route('dashboard.users.index')}}">
+                <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-user" />
                 Users
             </a>
         </li>
@@ -32,9 +29,8 @@
             </form>
             <a class="c-sidebar-nav-link" href="#"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <svg class="c-sidebar-nav-icon">
-                    <use xlink:href="vendor/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                </svg> Logout
+                <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-account-logout" />
+                Logout
             </a>
         </li>
         {{ $sidebar ?? '' }}

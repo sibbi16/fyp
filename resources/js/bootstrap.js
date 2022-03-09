@@ -6,17 +6,24 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('jquery');
-window.Popper = require('popper.js').default;
+// window.$ = window.jQuery = require('jquery');
+// window.Popper = require('popper.js').default;
+const $ = require('jquery');
+window.$ = $;
+const jQuery = $;
+window.jQuery = jQuery;
 
-const bootstrap = require('bootstrap');
-window.bootstrap = bootstrap;
+const Popper = require('popper.js');
+window.Popper = Popper;
+
+// const bootstrap = require('bootstrap');
+// window.bootstrap = bootstrap;
 
 /**
  * DataTables
  */
 import DataTable from 'datatables.net';
-import dt from "datatables.net-dt";
+import dt from 'datatables.net-bs4';
 window.DataTable = DataTable;
 window.dt = dt;
 

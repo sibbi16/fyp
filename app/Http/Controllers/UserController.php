@@ -14,4 +14,21 @@ class UserController extends Controller
         ];
         return view('dashboard.users.index'  , $data);
     }
+    public function create()
+    {
+
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function show(User $user)
+    {
+        $data=[
+            'user' =>$user,
+        ];
+        return view('dashboard.users.show',$data);
+    }
 }

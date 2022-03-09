@@ -9,8 +9,6 @@
     <title>{{ isset($pageTitle) ? $pageTitle . " | " . config('app.name')  : "Dashboard | " . config('app.name') }}</title>
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
     <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
-
-
     {{ $styles ?? "" }}
 </head>
 
@@ -31,8 +29,10 @@
     </div>
 
     <script src="{{ mix('js/dashboard.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    {{$scripts ?? ""}}
+    <script>
+        $('table').DataTable();
+    </script>
+    {{ $scripts ?? "" }}
 </body>
 
 </html>
