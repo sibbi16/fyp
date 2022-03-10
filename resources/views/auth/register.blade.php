@@ -83,15 +83,15 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Select Type</label>
-                                <select id="identity" class="form-control @error('identity') is-invalid @enderror"
-                                    name="identity">
+                                <select id="identity" class="form-control @error('type') is-invalid @enderror"
+                                    name="type">
                                     <option value="" disabled selected>Select Type </option>
                                     @foreach (App\Models\User:: $types as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            @error('identity')
+                            @error('type')
                             <div>
                                 <h6 class="text-danger">{{$message}}</h6>
                             </div>

@@ -5,10 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Sourcers') }}</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <title>{{ isset($pageTitle) ? $pageTitle . " | " . config('app.name')  : "Dashboard | " . config('app.name') }}</title>
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
     <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
-
+    {{ $styles ?? "" }}
 </head>
 
 <body class="c-app font-sans antialiased">
@@ -18,21 +19,9 @@
 
         <div class="c-body">
             <main class="c-main">
-
                 <div class="container">
-                    <div class="row fade-in">
-                        <div class="col">
-                            {{ $slot }}
-                        </div>
-
-                        @if (isset($aside))
-                        <div class="col-lg-3">
-                            {{ $aside ?? '' }}
-                        </div>
-                        @endif
-                    </div>
+                    {{ $slot ?? ''}}
                 </div>
-
             </main>
 
            @include('layouts.partials.dashboard.footer')
@@ -40,7 +29,10 @@
     </div>
 
     <script src="{{ mix('js/dashboard.js') }}"></script>
-    @stack('scripts')
+    <script>
+        $('table').DataTable();
+    </script>
+    {{ $scripts ?? "" }}
 </body>
 
 </html>
