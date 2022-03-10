@@ -9,9 +9,9 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -53,11 +53,12 @@ class RegisteredUserController extends Controller
                 'server_path' => $request->file('profile_image')->store('profile_images', ['disk' => 'public']),
             ];
         }
+        // $slug =$request->fname." ".$requ
 
         $user = User::create([
             'fname' => $request->fname,
             'lname' => $request->lname,
-            'username'=>$request->fname. " " .$request->lname,
+            'username'=> Str::slug($request->fname. " " .$request->lname),
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,

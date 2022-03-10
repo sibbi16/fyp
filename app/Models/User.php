@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Str;
 
 
 class User extends Authenticatable
@@ -60,12 +61,6 @@ class User extends Authenticatable
         3 => 'Shop Keeper',
     ];
 
-     // setting slug
-     public function setSlugAttribute($username)
-     {
-         $this->username = str_replace(" " , "-" , strtolower($username));
-     }
-
      public function getTypeTextAttribute()
      {
          return User::$types[$this->type] ?? 'Admin';
@@ -75,9 +70,10 @@ class User extends Authenticatable
     {
         if($this->profile_image && Storage::disk('public')->exists($this->profile_image['server_path'])){
             return Storage::url($this->profile_image['server_path']);
+        }else{
+            return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=FFFFFF&background=C9A44A&size=256';
         }
 
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=FFFFFF&background=C9A44A&size=256';
     }
     public function getNameAttribute()
     {

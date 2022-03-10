@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h1>Users</h1>
-                        <a href="" class="btn btn-success">Create User</a>
+                        <a href="{{route('dashboard.users.create')}}" class="btn btn-primary text-white">Create User</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped table-responsive-lg" id="userIdList">
@@ -53,7 +53,7 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{ route('dashboard.users.show', $user) }}"
+                                            <a href="{{ route('dashboard.users.show', $user->username) }}"
                                                 class="btn btn-info">View</a>
                                             <a href="{{ route('dashboard.users.edit', $user) }}"
                                                 class="btn btn-warning text-white">Edit</a>
