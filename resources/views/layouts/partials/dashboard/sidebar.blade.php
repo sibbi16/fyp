@@ -24,7 +24,7 @@
         <li class="c-sidebar-nav-title">Account</li>
         @canany(['view company dashboard','view individual dashboard','view shopkeeper dashboard'])
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{route('dashboard.users.show',auth()->user()->username)}}">
+            <a class="c-sidebar-nav-link  @if (request()->routeIs('dashboard.users.*')) c-active @endif" href="{{route('dashboard.users.show', auth()->user()->username)}}">
                 <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-user" />
                 Profile
             </a>

@@ -20,6 +20,9 @@
         <div class="c-body">
             <main class="c-main">
                 <div class="container">
+                    <div class="mb-2">
+                        <x-session-alerts />
+                    </div>
                     {{ $slot ?? ''}}
                 </div>
             </main>
