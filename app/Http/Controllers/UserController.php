@@ -154,7 +154,7 @@ class UserController extends Controller
             return redirect()->route('dashboard.users.index')->withSuccessMessage('User Deleted Successfully');
         }
         else{
-            return redirect()->route('dashboard.users.index')->withErrorMessage('AN Error has occured');
+            return redirect()->route('dashboard.users.index')->withErrorMessage('Sorry an Error has occured');
         }
     }
 }
