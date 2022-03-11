@@ -55,7 +55,7 @@
                                         <div class="btn-group">
                                             <a href="{{ route('dashboard.users.show', $user->username) }}"
                                                 class="btn btn-info">View</a>
-                                            <a href="{{ route('dashboard.users.edit', $user) }}"
+                                            <a href="{{ route('dashboard.users.edit', $user->username) }}"
                                                 class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deleteuserModel{{ $user->id }}">Delete</button>
@@ -69,22 +69,22 @@
                 </div>
             </div>
         </div>
-        {{-- @foreach ($galleries as $user)
-        <div class="modal fade" id="deleteuserModel{{ $gallery->id }}" tabindex="-1"
-            aria-labelledby="deleteCategoryModalLabel_{{ $gallery->title }}" aria-hidden="true">
+        @foreach ($users as $user)
+        <div class="modal fade" id="deleteuserModel{{ $user->id }}" tabindex="-1"
+            aria-labelledby="deleteCategoryModalLabel_{{ $user->name }}" aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered" role="document">
-                <form class="modal-content" action="{{ route('admin.blog.gallery.destroy', $gallery) }}" method="POST">
+                <form class="modal-content" action="{{ route('dashboard.users.destroy', $user->username) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteCategoryModalLabel_{{ $gallery->title }}">Confirm delete user?
+                        <h5 class="modal-title" id="deleteCategoryModalLabel_{{ $user->name }}">Confirm delete user?
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete the Post <strong>[{{ $gallery->title }}]</strong> and all its
+                        <p>Are you sure you want to delete this user <strong>[{{ $user->name }}]</strong> and all its
                             associated data from the system?</p>
                         <p><strong><em>Note: </em>This action is not reversible!</strong></p>
                     </div>
@@ -95,7 +95,7 @@
                 </form>
             </div>
         </div>
-        @endforeach --}}
+        @endforeach
     </div>
 
 
