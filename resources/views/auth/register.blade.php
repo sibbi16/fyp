@@ -104,6 +104,20 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <div class="form-group">
+                                    <label for="company_name">Company Name</label>
+                                    <input type="text" value="{{old('company_name')}}" placeholder="Company Name"
+                                        class="form-control" name="company_name">
+                                </div>
+                            </div>
+                            @error('company_name')
+                            <div>
+                                <h6 class="text-danger">{{$message}}</h6>
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="form-group">
                                     <label for="address">Company Address</label>
                                     <input type="text" value="{{old('company_address')}}" placeholder="Company Address"
                                         class="form-control" name="company_address">
@@ -118,12 +132,26 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <div class="form-group">
-                                    <label for="address">Company Phone</label>
+                                    <label for="company_phone">Company Phone</label>
                                     <input type="text" value="{{old('company_phone')}}" placeholder="Company Phone"
                                         class="form-control" name="company_phone">
                                 </div>
                             </div>
                             @error('company_phone')
+                            <div>
+                                <h6 class="text-danger">{{$message}}</h6>
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="company_landline">Company Landline</label>
+                                    <input type="text" value="{{old('company_landline')}}" placeholder="Company Landline Number"
+                                        class="form-control" name="company_landline">
+                                </div>
+                            </div>
+                            @error('company_landline')
                             <div>
                                 <h6 class="text-danger">{{$message}}</h6>
                             </div>
