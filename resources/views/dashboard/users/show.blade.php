@@ -35,11 +35,19 @@
                                   @if ($user->type == 1)
                                   <tr>
                                     <th scope="col">Company Name</th>
+                                    <td scope="col">{{$user->company_name}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="col">Company Address</th>
                                     <td scope="col">{{$user->company_address}}</td>
                                   </tr>
                                   <tr>
                                     <th scope="col">Company Phone</th>
                                     <td scope="col">{{$user->company_phone}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="col">Company Landline</th>
+                                    <td scope="col">{{$user->company_landline}}</td>
                                   </tr>
                                   @endif
                             </tbody>

@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Support\Str;
 
 
 class User extends Authenticatable
@@ -29,8 +28,10 @@ class User extends Authenticatable
         'phone',
         'address',
         'type',
+        'company_name',
         'company_address',
         'company_phone',
+        'company_landline',
         'profile_image',
         'password',
     ];
@@ -57,8 +58,7 @@ class User extends Authenticatable
 
     public static $types = [
         1 => 'Company',
-        2 => 'Individual',
-        3 => 'Shop Keeper',
+        2 => 'Shop Keeper',
     ];
 
      public function getTypeTextAttribute()

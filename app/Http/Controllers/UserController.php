@@ -28,14 +28,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'fname'=>['required','string','max:255'],
-            'lname'=>['required','string','max:255'],
-            'email'=>['required','string','email','unique:users,email','max:255'],
-            'phone'=>['required', 'string', 'max:255'],
+            'fname'=> ['required','string','max:255'],
+            'lname'=> ['required','string','max:255'],
+            'email'=> ['required','string','email','unique:users,email','max:255'],
+            'phone'=> ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'type' => ['required', 'string', Rule::in(['1','2','3'])],
+            'type' => ['required', 'string', Rule::in(['1','2',])],
+            'company_name' =>  Rule::requiredIf($request->type == "1"),
             'company_address' => Rule::requiredIf($request->type == "1"),
-            'company_phone' => Rule::requiredIf($request->type == "1"),
+            'company_phone' =>  Rule::requiredIf($request->type == "1"),
+            'company_landline' => Rule::requiredIf($request->type == "1"),
             'profile_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -56,8 +58,10 @@ class UserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'type' => $request->type,
+            'company_name' => $request->company_name,
             'company_address' => $request->company_address,
             'company_phone' => $request->company_phone,
+            'company_landline' => $request->company_landline,
             'password' => Hash::make($request->password),
             'profile_image'=>$profile_image ?? null,
         ]);
@@ -102,8 +106,10 @@ class UserController extends Controller
             'email'=>['required','string','email','max:255'],
             'phone'=>['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'company_address' => Rule::requiredIf($request->type == "1"),
-            'company_phone' => Rule::requiredIf($request->type == "1"),
+            'company_name' => ['required','string', Rule::requiredIf($request->type == "1")],
+            'company_address' => ['required','string',Rule::requiredIf($request->type == "1")],
+            'company_phone' => ['required','string', Rule::requiredIf($request->type == "1")],
+            'company_landline' => ['required','string',Rule::requiredIf($request->type == "1")],
             'profile_image' => ['nullable', 'image', 'mimes:jpeg,png.jpg'],
         ]);
 
@@ -127,8 +133,10 @@ class UserController extends Controller
         'phone' => $request->phone,
         'address' => $request->address,
         'type' => $request->type,
+        'company_name' => $request->company_name,
         'company_address' => $request->company_address,
         'company_phone' => $request->company_phone,
+        'company_landline' => $request->company_landline,
         'profile_image'=>$profileImage ?? null,
        ]);
        if($updated){

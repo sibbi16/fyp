@@ -40,21 +40,13 @@ class UserSeeder extends Seeder
                 'email' => 'company@mail.com',
                 'phone' => '03355035206',
                 'address' => 'house # 2D',
+                'company_name'=> 'Sourcers',
                 'company_address'=> 'testing address for company',
-                'company_phone'=> '0516739887',
+                'company_phone'=> '03155035206',
+                'company_landline'=> '0516739887',
                 'type' => '1',
                 'password' => Hash::make('123456789'),
                 'role' => 'company',
-            ],
-            [
-                'fname' => 'Individual',
-                'lname' => 'Testing',
-                'username'=>'individual-testing',
-                'email' => 'individual@mail.com',
-                'phone' => '03155035206',
-                'address' => 'house # 10D',
-                'type' => '2',
-                'password' => Hash::make('123456789'),
             ],
             [
                 'fname' => 'Shop Keeper',
@@ -68,7 +60,7 @@ class UserSeeder extends Seeder
             ],
         ];
         foreach ($users as $user) {
-            $user_role = $user['role'] ?? 'individual';
+            $user_role = $user['role'] ?? 'shopkeeper';
             unset($user['role']);
 
             $new_user = User::create($user);
