@@ -32,16 +32,11 @@ class RoleAndPermissionSeeder extends Seeder
                 'view admin dashboard',
                 'view student list',
                 'delete user profile',
-
             ],
 
             'company' => [
                'view company dashboard',
             ],
-
-            'individual' => [
-                'view individual dashboard',
-             ],
 
              'shopkeeper' => [
                 'view shopkeeper dashboard',
@@ -57,9 +52,7 @@ class RoleAndPermissionSeeder extends Seeder
         $permissionIdsByRole = [
             'admin' => $insertPermissions('admin'),
             'company' => $insertPermissions('company'),
-            'individual' => $insertPermissions('individual'),
             'shopkeeper' => $insertPermissions('shopkeeper'),
-
         ];
         foreach ($permissionIdsByRole as $role => $permissionIds) {
             $role = Role::findOrCreate($role);

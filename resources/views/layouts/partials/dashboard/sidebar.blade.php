@@ -21,6 +21,23 @@
             </a>
         </li>
         @endcan
+        <li class="c-sidebar-nav-title">Warehouses</li>
+        @can('view admin dashboard')
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link " href="{{route('dashboard.warehouses.index')}}">
+                <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-house" />
+                 Warehouses
+            </a>
+        </li>
+        @endcan
+        @canany(['view company dashboard','view individual dashboard'])
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link " href="#">
+                <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-house" />
+                Create Warehouse
+            </a>
+        </li>
+        @endcanany
         <li class="c-sidebar-nav-title">Account</li>
         @canany(['view company dashboard','view individual dashboard','view shopkeeper dashboard'])
         <li class="c-sidebar-nav-item">

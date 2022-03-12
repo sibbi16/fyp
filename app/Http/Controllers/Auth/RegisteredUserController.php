@@ -42,9 +42,11 @@ class RegisteredUserController extends Controller
             'phone'=>['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string', Rule::in(['1','2','3'])],
+            'company_name' =>  Rule::requiredIf($request->type == "1"),
             'company_address' => Rule::requiredIf($request->type == "1"),
-            'company_phone' => Rule::requiredIf($request->type == "1"),
-            'profile_image' => ['nullable', 'image', 'mimes:jpeg,png'],
+            'company_phone' =>  Rule::requiredIf($request->type == "1"),
+            'company_landline' => Rule::requiredIf($request->type == "1"),
+            'profile_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         if($request->hasFile('profile_image')){
@@ -53,7 +55,6 @@ class RegisteredUserController extends Controller
                 'server_path' => $request->file('profile_image')->store('profile_images', ['disk' => 'public']),
             ];
         }
-        // $slug =$request->fname." ".$requ
 
         $user = User::create([
             'fname' => $request->fname,
@@ -63,8 +64,10 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'type' => $request->type,
+            'company_name' => $request->company_name,
             'company_address' => $request->company_address,
             'company_phone' => $request->company_phone,
+            'company_landline' => $request->company_landline,
             'password' => Hash::make($request->password),
             'profile_image'=>$profile_image ?? Null,
         ]);
@@ -72,9 +75,6 @@ class RegisteredUserController extends Controller
             $user->assignRole('company');
         }
         elseif($request->type == "2"){
-            $user->assignRole('individual');
-        }
-        elseif($request->type == "3"){
             $user->assignRole('shopkeeper');
         }
 

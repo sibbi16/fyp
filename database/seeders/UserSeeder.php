@@ -49,16 +49,6 @@ class UserSeeder extends Seeder
                 'role' => 'company',
             ],
             [
-                'fname' => 'Individual',
-                'lname' => 'Testing',
-                'username'=>'individual-testing',
-                'email' => 'individual@mail.com',
-                'phone' => '03155035206',
-                'address' => 'house # 10D',
-                'type' => '2',
-                'password' => Hash::make('123456789'),
-            ],
-            [
                 'fname' => 'Shop Keeper',
                 'lname' => 'Testing',
                 'username'=>'shopkeeper-testing',
@@ -70,7 +60,7 @@ class UserSeeder extends Seeder
             ],
         ];
         foreach ($users as $user) {
-            $user_role = $user['role'] ?? 'individual';
+            $user_role = $user['role'] ?? 'shopkeeper';
             unset($user['role']);
 
             $new_user = User::create($user);

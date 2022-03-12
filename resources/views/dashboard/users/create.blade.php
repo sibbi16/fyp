@@ -230,6 +230,9 @@
                                     </x-button>
                                 </div>
                             </div>
+                            @foreach ($errors->all() as $error)
+                            {{ $error }}<br/>
+                             @endforeach
                         </form>
                     </div>
                 </div>
