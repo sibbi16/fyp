@@ -58,10 +58,8 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="#"
-                                                class="btn btn-info">View</a>
-                                            <a href="#"
-                                                class="btn btn-warning text-white">Edit</a>
+                                            <a href="#" class="btn btn-info">View</a>
+                                            <a href="{{route('dashboard.warehouses.edit', $warehouse->warehouse_name)}}" class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deletewarehouseModel{{ $warehouse->id }}">Delete</button>
                                         </div>

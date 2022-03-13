@@ -110,7 +110,7 @@ class UserController extends Controller
             'company_address' => ['required','string',Rule::requiredIf($request->type == "1")],
             'company_phone' => ['required','string', Rule::requiredIf($request->type == "1")],
             'company_landline' => ['required','string',Rule::requiredIf($request->type == "1")],
-            'profile_image' => ['nullable', 'image', 'mimes:jpeg,png.jpg'],
+            'profile_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg'],
         ]);
 
         if($request->hasFile('profile_image')){

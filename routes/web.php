@@ -31,14 +31,15 @@ Route::middleware(['auth'])->name('dashboard.')->group(function(){
         Route::delete('/{user:username}', [UserController::class, 'destroy'])->name('destroy')->middleware('permission:delete user profile');;
     });
     Route::prefix('warehouses')->name('warehouses.')->group(function () {
-        Route::get('/', [WarehousesController::class, 'index'])->name('index')->middleware('permission:view admin dashboard');
-        Route::get('/create', [WarehousesController::class, 'create'])->name('create')->middleware('permission:view admin dashboard');
+        Route::get('/', [WarehousesController::class, 'index'])->name('index')->middleware('permission:view admin dashboard|view company dashboard');
+        Route::get('/create', [WarehousesController::class, 'create'])->name('create')->middleware('permission:view admin dashboard|view company dashboard');
         Route::post('/', [WarehousesController::class, 'store'])->name('store');
         Route::get('/{warehouse:warehouse_name}', [WarehousesController::class, 'show'])->name('show');
-        Route::get('/{warehouse:warehouse_name}/edit', [WarehousesController::class, 'edit'])->name('edit');
-        Route::match(['put', 'patch'],'/{warehouse:warehouse_name}', [WarehousesController::class, 'update'])->name('update');
-        Route::delete('/{warehouse:name}', [WarehousesController::class, 'destroy'])->name('destroy')->middleware('permission:delete user profile');;
+        Route::get('/edit/{warehouse:warehouse_name}', [WarehousesController::class, 'edit'])->name('edit');
+        Route::match(['put', 'patch'],'/{warehouse:warehouse_name}', [WarehousesController::class, 'update'])->name('update')->middleware('permission:view admin dashboard|view company dashboard');
+        Route::delete('/{warehouse:warehouse_name}', [WarehousesController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard|view company dashboard');
     });
+    // most check that if it works on warehouse or warehouses
 });
 
 

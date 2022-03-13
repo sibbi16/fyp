@@ -24,7 +24,7 @@
         <li class="c-sidebar-nav-title">Warehouses</li>
         @can('view admin dashboard')
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link " href="{{route('dashboard.warehouses.index')}}">
+            <a class="c-sidebar-nav-link  @if (request()->routeIs('dashboard.warehouses.*')) c-active @endif" href="{{route('dashboard.warehouses.index')}}">
                 <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-house" />
                  Warehouses
             </a>
@@ -32,9 +32,9 @@
         @endcan
         @canany(['view company dashboard','view individual dashboard'])
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link " href="#">
+            <a class="c-sidebar-nav-link " href="{{route('dashboard.warehouses.index')}}">
                 <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-house" />
-                Create Warehouse
+                Warehouse
             </a>
         </li>
         @endcanany
