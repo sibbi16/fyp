@@ -23,6 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'fname',
         'lname',
+        'company_id',
         'username',
         'email',
         'phone',
@@ -59,11 +60,12 @@ class User extends Authenticatable
     public static $types = [
         1 => 'Company',
         2 => 'Shop Keeper',
+        3 => 'Supplier'
     ];
 
      public function getTypeTextAttribute()
      {
-         return User::$types[$this->type] ?? 'Admin';
+        return User::$types[$this->type] ?? 'Admin';
      }
 
      public function getAvatarUrlAttribute()

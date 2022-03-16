@@ -38,8 +38,12 @@ class RoleAndPermissionSeeder extends Seeder
                'view company dashboard',
             ],
 
-             'shopkeeper' => [
+            'shopkeeper' => [
                 'view shopkeeper dashboard',
+            ],
+            
+            'supplier' => [
+                'view supplier dashboard',
              ],
         ];
         $insertPermissions = function ($role) use ($permissionsByRole) {
@@ -52,6 +56,7 @@ class RoleAndPermissionSeeder extends Seeder
         $permissionIdsByRole = [
             'admin' => $insertPermissions('admin'),
             'company' => $insertPermissions('company'),
+            'supplier'=> $insertPermissions('supplier'),
             'shopkeeper' => $insertPermissions('shopkeeper'),
         ];
         foreach ($permissionIdsByRole as $role => $permissionIds) {
