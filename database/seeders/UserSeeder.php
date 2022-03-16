@@ -49,14 +49,26 @@ class UserSeeder extends Seeder
                 'role' => 'company',
             ],
             [
+                'fname' => 'Supplier',
+                'lname' => 'Testing',
+                'username'=>'supplier-testing',
+                'email' => 'supplier@mail.com',
+                'phone' => '03355035206',
+                'address' => 'house # 7D Block #10 shah faisal colony Rawalpindi',
+                'type' => '3',
+                'password' => Hash::make('123456789'),
+                'role' => 'supplier',
+            ],
+            [
                 'fname' => 'Shop Keeper',
                 'lname' => 'Testing',
                 'username'=>'shopkeeper-testing',
                 'email' => 'shopkeeper@mail.com',
                 'phone' => '03155035206',
                 'address' => 'house # 10D',
-                'type' => '3',
+                'type' => '2',
                 'password' => Hash::make('123456789'),
+                'role' => 'shopkeeper',
             ],
         ];
         foreach ($users as $user) {

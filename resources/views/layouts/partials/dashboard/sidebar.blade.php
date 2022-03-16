@@ -13,11 +13,20 @@
             </a>
         </li>
         @can('view admin dashboard')
-        <li class="c-sidebar-nav-title">user</li>
+        <li class="c-sidebar-nav-title">users</li>
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link  @if (request()->routeIs('dashboard.users.*')) c-active @endif" href="{{route('dashboard.users.index')}}">
                 <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-user" />
                 Users
+            </a>
+        </li>
+        @endcan
+        @can('view company dashboard')
+        <li class="c-sidebar-nav-title">Suppliers</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link " href="{{route('dashboard.suppliers.index')}}">
+                <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-user" />
+                users
             </a>
         </li>
         @endcan

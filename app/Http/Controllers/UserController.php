@@ -69,10 +69,10 @@ class UserController extends Controller
             $user->assignRole('company');
         }
         elseif($request->type == "2"){
-            $user->assignRole('individual');
+            $user->assignRole('shopkeeper');
         }
         elseif($request->type == "3"){
-            $user->assignRole('shopkeeper');
+            $user->assignRole('supplier');
         }
         if($user){
            return redirect()->route('dashboard.users.index')->withSuccessMessage('User Created Successfully');

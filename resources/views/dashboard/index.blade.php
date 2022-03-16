@@ -8,7 +8,7 @@
             @can('view admin dashboard')
             {{ __('Admin Dashboard') }}
             @endcan
-            @can('view individual dashboard')
+            @can('view supplier dashboard')
             {{ __('Supplier Dashboard') }}
             @endcan
             @can('view company dashboard')
@@ -22,8 +22,8 @@
             @can('view admin dashboard')
             You're logged in as Admin
             @endcan
-            @can('view individual dashboard')
-            You're logged in as individual
+            @can('view supplier dashboard')
+            You're logged in as Supplier
             @endcan
             @can('view company dashboard')
             You're logged in as company

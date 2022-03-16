@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('fname', 255);
             $table->string('lname', 255);
+            $table->foreignId('company_id')->nullable();
             $table->string('username' , 255)->unique();
             $table->string('email')->unique();
             $table->string('phone');

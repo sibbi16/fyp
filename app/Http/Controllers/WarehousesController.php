@@ -107,7 +107,7 @@ class WarehousesController extends Controller
             'warehouse_name' => $request->warehouse_name,
             'warehouse_address'=>$request->warehouse_address,
             'warehouse_phone'=>$request->warehouse_phone,
-            'warehouse_image'=>$warehouse_image,
+            'warehouse_image'=>$warehouse_image ?? null,
         ]);
         if($updated){
             return redirect()->route('dashboard.warehouses.index')->withSuccessMessage('Warehouse Info Updated Succesfully');

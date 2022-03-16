@@ -77,6 +77,9 @@ class RegisteredUserController extends Controller
         elseif($request->type == "2"){
             $user->assignRole('shopkeeper');
         }
+        elseif($request->type == "3"){
+            $user->assignRole('supplier');
+        }
 
         event(new Registered($user));
 
