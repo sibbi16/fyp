@@ -41,7 +41,7 @@
         @endcan
         @canany(['view company dashboard','view individual dashboard'])
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link " href="{{route('dashboard.warehouses.index')}}">
+            <a class="c-sidebar-nav-link" href="{{route('dashboard.warehouses.index')}}">
                 <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-house" />
                 Warehouse
             </a>

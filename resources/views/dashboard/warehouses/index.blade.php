@@ -41,7 +41,7 @@
                                     <td scope="row">{{ $loop->index + 1 }}</td>
                                     <td class="text-center">
                                         <div class="c-avatar">
-                                            <img class="c-avatar-img" src="{{ $warehouse->image }}" alt="warehouse image">
+                                            <img class="c-avatar-img" src="{{ $warehouse->avatar_url }}" alt="warehouse image">
                                         </div>
                                     </td>
                                     <td>
@@ -58,7 +58,7 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="#" class="btn btn-info">View</a>
+                                            <a href="{{route('dashboard.warehouses.show',$warehouse->warehouse_name)}}" class="btn btn-info">View</a>
                                             <a href="{{route('dashboard.warehouses.edit', $warehouse->warehouse_name)}}" class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deletewarehouseModel{{ $warehouse->id }}">Delete</button>

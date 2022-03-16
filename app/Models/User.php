@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
@@ -85,5 +86,10 @@ class User extends Authenticatable
     public function getInitialsAttribute()
     {
         return strtoupper(trim($this->fname)[0] . trim($this->lname)[0]);
+    }
+
+    public function warehouses()
+    {
+        return $this->hasMany(Warehouses::class, 'company_id', 'id');
     }
 }

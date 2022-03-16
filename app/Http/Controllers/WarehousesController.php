@@ -69,6 +69,15 @@ class WarehousesController extends Controller
         }
     }
 
+    public function show(Warehouses $warehouse)
+    {
+        $data =[
+            'warehouse'=>$warehouse,
+            // 'company'=> $warehouse->company()->get(),
+        ];
+        return view('dashboard.warehouses.show' ,$data);
+    }
+
     public function edit(Warehouses $warehouse)
     {
         $data=[
@@ -115,4 +124,6 @@ class WarehousesController extends Controller
             return redirect()->route('dashboard.warehouses.index')->withErrorMessage('An Error Has Occured');
         }
     }
+
+
 }

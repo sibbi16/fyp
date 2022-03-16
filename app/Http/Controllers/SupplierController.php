@@ -15,7 +15,7 @@ class SupplierController extends Controller
     public function index()
     {
         $data=[
-            'suppliers'=> User::where('type', 3)->get(),
+            'suppliers'=> User::where('company_id', auth()->user()->id)->get(),
         ];
         return view('dashboard.suppliers.index',$data);
     }
