@@ -92,4 +92,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Warehouses::class, 'company_id', 'id');
     }
+
+    // public function company_id()
+    // {
+    //     return $this->hasOne(User::class, 'company_id', 'id');
+    // }
+
+    public function company()
+    {
+        return $this->belongsTo(User::class, 'company_id', 'id');
+    }
 }
