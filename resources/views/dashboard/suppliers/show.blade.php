@@ -32,24 +32,24 @@
                                     <th scope="col">Address</th>
                                     <td scope="col">{{$supplier->address}}</td>
                                   </tr>
-                                  {{-- @if ($supplier->type == 3)
+                                  @if ($supplier->type == 3)
                                   <tr>
                                     <th scope="col">Company Name</th>
-                                    <td scope="col">{{$company->company->company_name}}</td>
+                                    <td scope="col">{{$supplier->company->name}}</td>
                                   </tr>
                                   <tr>
                                     <th scope="col">Company Address</th>
-                                    <td scope="col">{{$supplier->company_address}}</td>
+                                    <td scope="col">{{$supplier->company->company_address}}</td>
                                   </tr>
                                   <tr>
                                     <th scope="col">Company Phone</th>
-                                    <td scope="col">{{$supplier->company_phone}}</td>
+                                    <td scope="col">{{$supplier->company->company_phone}}</td>
                                   </tr>
                                   <tr>
                                     <th scope="col">Company Landline</th>
-                                    <td scope="col">{{$supplier->company_landline}}</td>
+                                    <td scope="col">{{$supplier->company->company_landline}}</td>
                                   </tr>
-                                  @endif --}}
+                                  @endif
                             </tbody>
                           </table>
                     </div>

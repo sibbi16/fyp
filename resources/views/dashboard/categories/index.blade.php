@@ -19,39 +19,42 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h1>Categories</h1>
-                        <a href="#" class="btn btn-primary text-white">Create Category</a>
+                        <a href="{{route('dashboard.category.create')}}" class="btn btn-primary text-white">Create Category</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped table-responsive-lg" id="categoryList">
                             <thead>
                                 <tr>
-                                    <th scope="col">Sr. #</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Created On</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" class="text-center">Sr. #</th>
+                                    <th scope="col" class="text-center">Name</th>
+                                    <th scope="col" class="text-center">Created By</th>
+                                    <th scope="col" class="text-center">Created On</th>
+                                    <th scope="col" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($categories as $category)
+                                @foreach ($categories as $category)
                                 <tr>
-                                    <td scope="row">{{ $loop->index + 1 }}</td>
-                                    <td>
-                                        {{ $category->name }}
-                                        <div class="text-muted">{{ $category->email }}</div>
+                                    <td scope="row" class="text-center">{{ $loop->index + 1 }}</td>
+                                    <td class="text-center">
+                                        <b>{{ $category->name }}</b>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
+                                        {{$category->user->name}}
+                                    </td>
+                                    <td class="text-center">
                                         {{$category->created_at->format('d M Y h:i A')}}
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <div class="btn-group">
-                                        <a href="#"
+                                        <a href="{{route('dashboard.category.edit',$category->slug)}}"
                                                 class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deletecategoryModel{{ $category->id }}">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

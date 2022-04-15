@@ -73,9 +73,9 @@ class SupplierController extends Controller
     {
         $data =[
             'supplier' => $supplier,
-            // 'company' => $supplier->company_id()->first(),
+            // 'company' => $supplier->suppliers->get(),
         ];
-        // dd($data['supplier']);
+        // dd($data['company']);
         return view('dashboard.suppliers.show' ,$data);
     }
 
