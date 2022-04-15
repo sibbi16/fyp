@@ -24,9 +24,9 @@
         @can('view company dashboard')
         <li class="c-sidebar-nav-title">Suppliers</li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link " href="{{route('dashboard.suppliers.index')}}">
+            <a class="c-sidebar-nav-link @if (request()->routeIs('dashboard.suppliers.*')) c-active @endif" href="{{route('dashboard.suppliers.index')}}">
                 <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-user" />
-                users
+                Suppliers
             </a>
         </li>
         @endcan
@@ -39,16 +39,25 @@
             </a>
         </li>
         @endcan
-        @canany(['view company dashboard','view individual dashboard'])
+        @canany(['view company dashboard','view supplier dashboard'])
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link " href="{{route('dashboard.warehouses.index')}}">
+            <a class="c-sidebar-nav-link @if (request()->routeIs('dashboard.warehouses.*')) c-active @endif" href="{{route('dashboard.warehouses.index')}}">
                 <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-house" />
                 Warehouse
             </a>
         </li>
         @endcanany
+        @canany(['view admin dashboard' , 'view company dashboard'])
+        <li class="c-sidebar-nav-title">Products</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{route('dashboard.category.index')}}">
+                <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-library" />
+                Product Categories
+            </a>
+        </li>
+        @endcanany
         <li class="c-sidebar-nav-title">Account</li>
-        @canany(['view company dashboard','view individual dashboard','view shopkeeper dashboard'])
+        @canany(['view company dashboard','view supplier dashboard','view shopkeeper dashboard'])
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link  @if (request()->routeIs('dashboard.users.*')) c-active @endif" href="{{route('dashboard.users.show', auth()->user()->username)}}">
                 <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-user" />
