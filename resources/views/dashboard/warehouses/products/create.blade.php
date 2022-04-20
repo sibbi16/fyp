@@ -29,7 +29,7 @@
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label for="name">Product Name</label>
-                                            <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror"
+                                            <input type="text" value="{{old('name')}}" class="form-control"
                                                 placeholder="Product Name" name="name">
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                     <div class="form-group">
                                         <div class="form-group">
                                             <label for="description">Description</label>
-                                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Add Product Description" rows="4">{{old('description')}}</textarea>
+                                            <textarea class="form-control" name="description" placeholder="Add Product Description" rows="4">{{old('description')}}</textarea>
                                         </div>
                                     </div>
                                     <x-input-error for="description" />
@@ -50,23 +50,11 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Select Category</label>
-                                        <select  class="form-control @error('category') is-invalid @enderror" name="category">
-                                            <option value="" selected>Select Category </option>
-                                            @foreach ($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <x-input-error for="category" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="price">Price</label>
-                                        <input type="number" value="{{old('price')}}" placeholder=" Enter Price"
-                                            class="form-control @error('price') is-invalid @enderror" name="price">
+                                        <div class="form-group">
+                                            <label for="price">Price</label>
+                                            <input type="number" value="{{old('price')}}" placeholder=" Enter Price"
+                                                class="form-control" name="price">
+                                        </div>
                                     </div>
                                     <x-input-error for="price" />
                                 </div>
@@ -78,8 +66,8 @@
                                         <input type="file" name="image" class="custom-file-input form-control @error('image') is-invalid @enderror" id="productImage">
                                         <label class="custom-file-label" for="productImage">Product Image</label>
                                     </div>
-                                    <x-input-error for="image" />
                                 </div>
+                                <x-input-error for="image" />
                                 <script>
                                     const productImage= document.getElementById('productImage');
                                     productImage.addEventListener('change', e => {

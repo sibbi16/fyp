@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\ProductCategory;
 use App\Models\Products;
 use App\Models\Warehouses;
@@ -57,8 +56,7 @@ class ProductsController extends Controller
             'slug' => Str::slug($request->name),
             'description'=> $request->description,
             'category'=> $request->category,
-            'price' => $request->price,
-            'image' => $product_image,
+            'image'=> $product_image,
         ]);
 
         if($product){

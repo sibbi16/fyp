@@ -36,7 +36,11 @@ class Products extends Model
     public function getProductImageAttribute()
     {
         return Storage::url($this->image['path']);
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> efacc76b033c000880aa91d7cbf5910f00b9721a
     }
 
     public function warehouse()
