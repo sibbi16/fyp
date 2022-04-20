@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\ProductCategory;
 use App\Models\Products;
 use App\Models\Warehouses;
 use Illuminate\Http\Request;
@@ -22,6 +22,7 @@ class ProductsController extends Controller
     {
         $data=[
             'warehouse' => $warehouse,
+            'categories' => ProductCategory::get(),
         ];
         return view('dashboard.warehouses.products.create',$data);
     }
@@ -31,6 +32,7 @@ class ProductsController extends Controller
         $request->validate([
             'name'=> ['required','string','max:255'],
             'description'=> ['required','string'],
+            'category'=> ['required','integer'],
             'price'=> ['required','string','min:1'],
             'image' => ['required', 'image', 'mimes:jpeg,jpg,png'],
         ]);
@@ -54,7 +56,8 @@ class ProductsController extends Controller
             'slug' => Str::slug($request->name),
             'description'=> $request->description,
             'price' => $request->price,
-            'image' => $product_image,
+            'category'=> $request->category,
+            'image'=> $product_image,
         ]);
 
         if($product){

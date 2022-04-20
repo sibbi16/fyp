@@ -20,6 +20,7 @@ class Products extends Model
         'name',
         'slug',
         'description',
+        'category',
         'price',
         'image',
     ];
@@ -35,7 +36,6 @@ class Products extends Model
     public function getProductImageAttribute()
     {
         return Storage::url($this->image['path']);
-        
     }
 
     public function warehouse()

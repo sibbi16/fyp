@@ -4,9 +4,10 @@
     </x-slot>
     <x-slot name="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Home</a></li>
-        @can('view admin dashboard')
+        @canany(['view admin dashboard', 'view company dashboard'])
         <li class="breadcrumb-item"><a href="{{route('dashboard.warehouses.index')}}">Warehouses</a></li>
-        @endcan
+        <li class="breadcrumb-item"><a href="{{route('dashboard.warehouses.products.index',$warehouse->id)}}">Products</a></li>
+        @endcanany
         <li class="breadcrumb-item active">Create</li>
     </x-slot>
     <div>
@@ -45,6 +46,21 @@
                                         </div>
                                     </div>
                                     <x-input-error for="description" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Select category</label>
+                                        <select  class="form-control @error('category') is-invalid @enderror"
+                                            name="category">
+                                            <option value="" disabled selected>Select category </option>
+                                            @foreach ($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <x-input-error for="category" />
                                 </div>
                             </div>
                             <div class="row">
