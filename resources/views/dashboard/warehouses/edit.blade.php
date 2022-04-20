@@ -4,9 +4,7 @@
     </x-slot>
     <x-slot name="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Home</a></li>
-        @can('view admin dashboard')
         <li class="breadcrumb-item"><a href="{{route('dashboard.warehouses.index')}}">Warehouses</a></li>
-        @endcan
         <li class="breadcrumb-item active">Edit</li>
     </x-slot>
     <div>

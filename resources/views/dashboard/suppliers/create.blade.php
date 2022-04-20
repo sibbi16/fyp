@@ -95,12 +95,6 @@
                                         <label>Type</label>
                                         <input type="text" value="Supplier" placeholder="Address"
                                                 class="form-control" disabled>
-                                        {{-- <select id="identity" class="form-control @error('type') is-invalid @enderror"
-                                            name="type" readonly>
-                                            @foreach (App\Models\User:: $types as $key => $value)
-                                            <option value="{{$key}}" selected>{{$value}}</option>
-                                            @endforeach
-                                        </select> --}}
                                     </div>
                                     @error('type')
                                     <div>

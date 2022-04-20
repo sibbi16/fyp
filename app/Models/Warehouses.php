@@ -32,7 +32,7 @@ class Warehouses extends Model
         'warehouse_image' =>'array',
     ];
 
-    public function getImageAttribute()
+    public function getAvatarUrlAttribute()
     {
         if($this->warehouse_image && Storage::disk('public')->exists($this->warehouse_image['path'])){
             return Storage::url($this->warehouse_image['path']);
@@ -40,4 +40,15 @@ class Warehouses extends Model
             return asset('images/warehouse.jpg');
         }
     }
+
+    public function company()
+    {
+        return $this->belongsTo(User::class, 'company_id', 'id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Products::class, 'warehouse_id', 'id');
+    }
+
 }
