@@ -55,6 +55,7 @@ class ProductsController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'description'=> $request->description,
+            'price' => $request->price,
             'category'=> $request->category,
             'image'=> $product_image,
         ]);

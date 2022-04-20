@@ -131,7 +131,7 @@ class WarehousesController extends Controller
              $delete = $warehouse->delete();
         }
         if($delete){
-            return redirect()->route('dashboard.warehouses.index')->withSuccessMessage('Supplier Deleted Successfully');
+            return redirect()->route('dashboard.warehouses.index')->withSuccessMessage('Warehouse Deleted Successfully');
         }else{
             return redirect()->route('dashboard.warehouses.index')->withErrorMessage('AN Error Occured');
         }
