@@ -73,7 +73,6 @@ class WarehousesController extends Controller
     {
         $data =[
             'warehouse'=>$warehouse,
-            // 'company'=> $warehouse->company()->get(),
         ];
         return view('dashboard.warehouses.show' ,$data);
     }

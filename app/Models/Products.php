@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Products extends Model
 {
@@ -31,4 +32,14 @@ class Products extends Model
     protected $casts = [
         'image' => 'array',
     ];
+    public function getProductImageAttribute()
+    {
+        return Storage::url($this->image['path']);
+        
+    }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouses::class);
+    }
 }

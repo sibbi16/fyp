@@ -76,8 +76,8 @@ class User extends Authenticatable
         }else{
             return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=FFFFFF&background=C9A44A&size=256';
         }
-
     }
+    
     public function getNameAttribute()
     {
         return trim($this->fname) ." ". trim($this->lname);

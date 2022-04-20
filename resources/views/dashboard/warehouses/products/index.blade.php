@@ -4,8 +4,8 @@
     </x-slot>
     <x-slot name="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Products</a></li>
-        <li class="breadcrumb-item active">List</li>
+        <li class="breadcrumb-item"><a href="{{route('dashboard.warehouses.index')}}">Warehouses</a></li>
+        <li class="breadcrumb-item active">Product List</li>
     </x-slot>
     <x-slot name="scripts">
         <script>
@@ -20,8 +20,9 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h1>Product Information</h1>
-                        <a href="#" class="btn btn-primary text-white">Add Product</a>
+                        <a href="{{route('dashboard.warehouses.products.create',$warehouse->id)}}" class="btn btn-primary text-white">Add Product</a>
                     </div>
+
                     <div class="card-body">
                         <table class="table table-striped table-responsive-lg" id="productList">
                             <thead>
@@ -30,28 +31,28 @@
                                     <th scope="col" class="text-center">Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">Price RS</th>
+                                    <th scope="col">Price/RS</th>
                                     <th scope="col">Created On</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($products as $product)
+                                @foreach ($products as $product)
                                 <tr>
                                     <td scope="row">{{ $loop->index + 1 }}</td>
                                     <td class="text-center">
                                         <div class="c-avatar">
-                                            <img class="c-avatar-img" src="{{ $product->avatar_url }}" alt="product image">
+                                            <img class="c-avatar-img" src="{{ $product->product_image }}" alt="product image">
                                         </div>
                                     </td>
                                     <td>
                                         {{ $product->name }}
                                     </td>
-                                    <td>
+                                    <td class="text-truncate" style="max-width: 100px;">
                                         {{ $product->description }}
                                     </td>
                                     <td>
-                                        {{ $product->price }}
+                                        {{ $product->price }} PKR
                                     </td>
                                     <td>
                                         {{$product->created_at->format('d M Y h:i A')}}
@@ -65,7 +66,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

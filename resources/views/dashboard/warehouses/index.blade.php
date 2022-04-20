@@ -58,7 +58,7 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{route('dashboard.warehouses.products.index')}}" class="btn btn-secondary">Show Products</a>
+                                            <a href="{{route('dashboard.warehouses.products.index',$warehouse->id)}}" class="btn btn-secondary">Show Products</a>
                                             <a href="{{route('dashboard.warehouses.show',$warehouse->warehouse_name)}}" class="btn btn-info">View</a>
                                             <a href="{{route('dashboard.warehouses.edit', $warehouse->warehouse_name)}}" class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"

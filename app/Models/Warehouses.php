@@ -46,4 +46,9 @@ class Warehouses extends Model
         return $this->belongsTo(User::class, 'company_id', 'id');
     }
 
+    public function products()
+    {
+        return $this->hasMany(Products::class, 'warehouse_id', 'id');
+    }
+
 }
