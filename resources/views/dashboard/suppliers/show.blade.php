@@ -32,7 +32,6 @@
                                     <th scope="col">Address</th>
                                     <td scope="col">{{$supplier->address}}</td>
                                   </tr>
-                                  @if ($supplier->type == 3)
                                   <tr>
                                     <th scope="col">Company Name</th>
                                     <td scope="col">{{$supplier->company->name}}</td>
@@ -49,7 +48,6 @@
                                     <th scope="col">Company Landline</th>
                                     <td scope="col">{{$supplier->company->company_landline}}</td>
                                   </tr>
-                                  @endif
                             </tbody>
                           </table>
                     </div>

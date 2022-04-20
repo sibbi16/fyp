@@ -1,16 +1,16 @@
 <x-dashboard-layout>
     <x-slot name="pageTitle">
-        Warehouses
+        Products
     </x-slot>
     <x-slot name="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Warehouses</a></li>
+        <li class="breadcrumb-item"><a href="#">Products</a></li>
         <li class="breadcrumb-item active">List</li>
     </x-slot>
     <x-slot name="scripts">
         <script>
             $(document).ready(function() {
-                 $('#warehouseList').DataTable();
+                 $('#productList').DataTable();
             });
         </script>
     </x-slot>
@@ -19,76 +19,75 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h1>Warehouses</h1>
-                        <a href="{{route('dashboard.warehouses.create')}}" class="btn btn-primary text-white">Create Warehouse</a>
+                        <h1>Product Information</h1>
+                        <a href="#" class="btn btn-primary text-white">Add Product</a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-responsive-lg" id="warehouseList">
+                        <table class="table table-striped table-responsive-lg" id="productList">
                             <thead>
                                 <tr>
                                     <th scope="col">Sr. #</th>
                                     <th scope="col" class="text-center">Image</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">Phone</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Price RS</th>
                                     <th scope="col">Created On</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($warehouses as $warehouse)
+                                {{-- @foreach ($products as $product)
                                 <tr>
                                     <td scope="row">{{ $loop->index + 1 }}</td>
                                     <td class="text-center">
                                         <div class="c-avatar">
-                                            <img class="c-avatar-img" src="{{ $warehouse->avatar_url }}" alt="warehouse image">
+                                            <img class="c-avatar-img" src="{{ $product->avatar_url }}" alt="product image">
                                         </div>
                                     </td>
                                     <td>
-                                        {{ $warehouse->warehouse_name }}
+                                        {{ $product->name }}
                                     </td>
                                     <td>
-                                        {{ $warehouse->warehouse_address }}
+                                        {{ $product->description }}
                                     </td>
                                     <td>
-                                        {{ $warehouse->warehouse_phone }}
+                                        {{ $product->price }}
                                     </td>
                                     <td>
-                                        {{$warehouse->created_at->format('d M Y h:i A')}}
+                                        {{$product->created_at->format('d M Y h:i A')}}
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{route('dashboard.warehouses.products.index')}}" class="btn btn-secondary">Show Products</a>
-                                            <a href="{{route('dashboard.warehouses.show',$warehouse->warehouse_name)}}" class="btn btn-info">View</a>
-                                            <a href="{{route('dashboard.warehouses.edit', $warehouse->warehouse_name)}}" class="btn btn-warning text-white">Edit</a>
+                                            <a href="#" class="btn btn-info">View</a>
+                                            <a href="#" class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"
-                                                data-target="#deletewarehouseModel{{ $warehouse->id }}">Delete</button>
+                                                data-target="#deleteproductModel{{ $product->id }}">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        @foreach ($warehouses as $warehouse)
-        <div class="modal fade" id="deletewarehouseModel{{ $warehouse->id }}" tabindex="-1"
-            aria-labelledby="deleteCategoryModalLabel_{{ $warehouse->warehouse_name }}" aria-hidden="true">
+        {{-- @foreach ($products as $product)
+        <div class="modal fade" id="deleteproductModel{{ $product->id }}" tabindex="-1"
+            aria-labelledby="deleteCategoryModalLabel_{{ $product->name }}" aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered" role="document">
-                <form class="modal-content" action="{{ route('dashboard.warehouses.destroy', $warehouse->warehouse_name) }}" method="POST">
+                <form class="modal-content" action="{{ route('dashboard.products.destroy', $product->name) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteCategoryModalLabel_{{ $warehouse->warehouse_name }}">Confirm delete user?
+                        <h5 class="modal-title" id="deleteCategoryModalLabel_{{ $product->name }}">Confirm delete user?
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete this user <strong>[{{ $warehouse->warehouse_name }}]</strong> and all its
+                        <p>Are you sure you want to delete this user <strong>[{{ $product->name }}]</strong> and all its
                             associated data from the system?</p>
                         <p><strong><em>Note: </em>This action is not reversible!</strong></p>
                     </div>
@@ -99,6 +98,6 @@
                 </form>
             </div>
         </div>
-        @endforeach
+        @endforeach --}}
     </div>
 </x-dashboard-layout>
