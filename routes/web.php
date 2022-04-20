@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WarehousesController;
@@ -40,6 +42,15 @@ Route::middleware(['auth'])->name('dashboard.')->group(function(){
         Route::get('/edit/{warehouse:warehouse_name}', [WarehousesController::class, 'edit'])->name('edit');
         Route::match(['put', 'patch'],'/{warehouse:warehouse_name}', [WarehousesController::class, 'update'])->name('update')->middleware('permission:view admin dashboard|view company dashboard');
         Route::delete('/{warehouse:warehouse_name}', [WarehousesController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard|view company dashboard');
+             Route::prefix('products')->name('products.')->group(function () {
+                Route::get('/{warehouse}', [ProductsController::class, 'index'])->name('index')->middleware('permission:view admin dashboard|view company dashboard');
+                Route::get('/create/{warehouse}', [ProductsController::class, 'create'])->name('create')->middleware('permission:view admin dashboard|view company dashboard');
+                Route::post('/', [ProductsController::class, 'store'])->name('store');
+                Route::get('/{product:slug}', [ProductsController::class, 'show'])->name('show');
+                Route::get('/edit/{product:slug}', [ProductsController::class, 'edit'])->name('edit');
+                Route::match(['put', 'patch'],'/{product:slug}', [ProductsController::class, 'update'])->name('update')->middleware('permission:view admin dashboard|view company dashboard');
+                Route::delete('/{product}', [ProductsController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard|view company dashboard');
+            });
     });
     Route::prefix('suppliers')->name('suppliers.')->group(function () {
         Route::get('/', [SupplierController::class, 'index'])->name('index')->middleware('permission:view admin dashboard|view company dashboard');
