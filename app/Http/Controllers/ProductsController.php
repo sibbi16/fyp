@@ -67,4 +67,54 @@ class ProductsController extends Controller
              return redirect()->route('dashboard.warehouses.products.index',$request->warehouse_id)->withErrorMessage('An Error Has Occured');;
          }
     }
+
+    public function edit(Products $product, Warehouses $warehouse)
+    {
+        $data=[
+            'product' => $product,
+            'warehouse' => $warehouse,
+            'categories' => ProductCategory::get(),
+        ];
+        return view('dashboard.warehouses.products.edit',$data);
+    }
+
+    public function update(Request $request , Products $product)
+    {
+        $request->validate([
+            'name'=> ['required','string','max:255'],
+            'description'=> ['required','string'],
+            'category_id'=> ['required','integer'],
+            'price'=> ['required','string','min:1'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
+        ]);
+
+        if($request->hasFile('image')){
+            $extension =$request->file('image')->extension();
+            $name = $request->file('image')->getClientOriginalName();
+            $file_path = $request->file('image')->store('product_images/',['disk'=>'public']);
+
+            if($file_path){
+                $product_image = [
+                    'ext'=>$extension,
+                    'name'=>$name,
+                    'path'=>$file_path,
+                ];
+            }
+        }
+        $updated = $product->update([
+            'category_id'=> $request->category_id,
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'description'=> $request->description,
+            'price' => $request->price,
+            'image'=> $product_image ?? $product->image,
+        ]);
+
+        if($updated){
+            return redirect()->route('dashboard.warehouses.products.index',$request->warehouse_id)->withSuccessMessage('Product Updated Successfully');
+         }
+         else{
+             return redirect()->route('dashboard.warehouses.products.index',$request->warehouse_id)->withErrorMessage('An Error Has Occured');;
+         }
+    }
 }

@@ -47,7 +47,7 @@ Route::middleware(['auth'])->name('dashboard.')->group(function(){
                 Route::get('/create/{warehouse}', [ProductsController::class, 'create'])->name('create')->middleware('permission:view admin dashboard|view company dashboard');
                 Route::post('/', [ProductsController::class, 'store'])->name('store');
                 Route::get('/{product:slug}', [ProductsController::class, 'show'])->name('show');
-                Route::get('/edit/{product:slug}', [ProductsController::class, 'edit'])->name('edit');
+                Route::get('/edit/{product:slug}/{warehouse}', [ProductsController::class, 'edit'])->name('edit');
                 Route::match(['put', 'patch'],'/{product:slug}', [ProductsController::class, 'update'])->name('update')->middleware('permission:view admin dashboard|view company dashboard');
                 Route::delete('/{product}', [ProductsController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard|view company dashboard');
             });

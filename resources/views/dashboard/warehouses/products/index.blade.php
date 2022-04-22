@@ -65,7 +65,7 @@
                                     <td>
                                         <div class="btn-group">
                                             <a href="#" class="btn btn-info">View</a>
-                                            <a href="#" class="btn btn-warning text-white">Edit</a>
+                                            <a href="{{route('dashboard.warehouses.products.edit',[ $product->slug ,$warehouse->id])}}" class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deleteproductModel{{ $product->id }}">Delete</button>
                                         </div>
