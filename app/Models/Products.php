@@ -17,10 +17,10 @@ class Products extends Model
      */
     protected $fillable = [
         'warehouse_id',
+        'category_id',
         'name',
         'slug',
         'description',
-        'category',
         'price',
         'image',
     ];
@@ -41,5 +41,10 @@ class Products extends Model
     public function warehouse()
     {
         return $this->belongsTo(Warehouses::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'category_id', 'id');
     }
 }

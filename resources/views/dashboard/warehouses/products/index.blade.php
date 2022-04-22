@@ -30,6 +30,7 @@
                                     <th scope="col">Sr. #</th>
                                     <th scope="col" class="text-center">Image</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Price/RS</th>
                                     <th scope="col">Created On</th>
@@ -37,6 +38,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @foreach ($products as $product)
                                 <tr>
                                     <td scope="row">{{ $loop->index + 1 }}</td>
@@ -47,6 +49,9 @@
                                     </td>
                                     <td>
                                         {{ $product->name }}
+                                    </td>
+                                    <td>
+                                        {{ $product->category->name }}
                                     </td>
                                     <td class="text-truncate" style="max-width: 100px;">
                                         {{ $product->description }}

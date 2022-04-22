@@ -32,7 +32,7 @@ class ProductsController extends Controller
         $request->validate([
             'name'=> ['required','string','max:255'],
             'description'=> ['required','string'],
-            'category'=> ['required','integer'],
+            'category_id'=> ['required','integer'],
             'price'=> ['required','string','min:1'],
             'image' => ['required', 'image', 'mimes:jpeg,jpg,png'],
         ]);
@@ -52,11 +52,11 @@ class ProductsController extends Controller
         }
         $product = Products::create([
             'warehouse_id' => $request->warehouse_id,
+            'category_id'=> $request->category_id,
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'description'=> $request->description,
             'price' => $request->price,
-            'category'=> $request->category,
             'image'=> $product_image,
         ]);
 

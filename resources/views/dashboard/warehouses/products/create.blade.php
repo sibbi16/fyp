@@ -52,15 +52,15 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Select category</label>
-                                        <select  class="form-control @error('category') is-invalid @enderror"
-                                            name="category">
+                                        <select  class="form-control @error('category_id') is-invalid @enderror"
+                                            name="category_id">
                                             <option value="" disabled selected>Select category </option>
                                             @foreach ($categories as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <x-input-error for="category" />
+                                    <x-input-error for="category_id" />
                                 </div>
                             </div>
                             <div class="row">
@@ -101,6 +101,9 @@
                                     </x-button>
                                 </div>
                             </div>
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}<br/>
+                             @endforeach
                         </form>
                     </div>
                 </div>
