@@ -1,10 +1,9 @@
 <x-dashboard-layout>
     <x-slot name="pageTitle">
-        Products
+       All Products
     </x-slot>
     <x-slot name="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{route('dashboard.warehouses.index')}}">Warehouses</a></li>
         <li class="breadcrumb-item active">Product List</li>
     </x-slot>
     <x-slot name="scripts">
@@ -20,7 +19,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h1>Product Information</h1>
-                        <a href="{{route('dashboard.warehouses.products.create',$warehouse->id)}}" class="btn btn-primary text-white">Add Product</a>
+                        <a href="#" class="btn btn-primary text-white">Add Product</a>
                     </div>
 
                     <div class="card-body">
@@ -64,8 +63,8 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{route('dashboard.warehouses.products.show',[ $product->slug , $warehouse->id])}}" class="btn btn-info">View</a>
-                                            <a href="{{route('dashboard.warehouses.products.edit',[ $product->slug , $warehouse->id])}}" class="btn btn-warning text-white">Edit</a>
+                                            <a href="{{route('dashboard.all_products.show',$product->slug)}}" class="btn btn-info">View</a>
+                                            <a href="{{route('dashboard.all_products.edit', $product->slug)}}" class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deleteproductModel{{ $product->id }}">Delete</button>
                                         </div>
@@ -82,7 +81,7 @@
         <div class="modal fade" id="deleteproductModel{{ $product->id }}" tabindex="-1"
             aria-labelledby="deleteCategoryModalLabel_{{ $product->name }}" aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered" role="document">
-                <form class="modal-content" action="{{ route('dashboard.warehouses.products.destroy', [ $product->id , $warehouse->id]) }}" method="POST">
+                <form class="modal-content" action="{{route('dashboard.all_products.destroy',$product->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-header">

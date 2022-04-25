@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\ProductCategory;
 use App\Models\Products;
 use App\Models\Warehouses;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductsController extends Controller
@@ -25,6 +27,15 @@ class ProductsController extends Controller
             'categories' => ProductCategory::get(),
         ];
         return view('dashboard.warehouses.products.create',$data);
+    }
+
+    public function show(Products $product , Warehouses $warehouse)
+    {
+        $data=[
+            'product' => $product,
+            'warehouse' => $warehouse,
+        ];
+        return view('dashboard.warehouses.products.show' , $data);
     }
 
     public function store (Request $request)
@@ -115,6 +126,20 @@ class ProductsController extends Controller
          }
          else{
              return redirect()->route('dashboard.warehouses.products.index',$request->warehouse_id)->withErrorMessage('An Error Has Occured');;
+         }
+    }
+
+    public function destroy(Products $product , Warehouses $warehouse)
+    {
+        if($product){
+            Storage::disk('public')->delete($product->image['path']);
+            $delete = $product->delete();
+        }
+        if($delete){
+            return redirect()->route('dashboard.warehouses.products.index',$warehouse->id)->withSuccessMessage('Product Deleted Successfully');
+         }
+         else{
+             return redirect()->route('dashboard.warehouses.products.index',$warehouse->id)->withErrorMessage('An Error Has Occured');;
          }
     }
 }

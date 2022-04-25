@@ -40,7 +40,7 @@ class Products extends Model
 
     public function warehouse()
     {
-        return $this->belongsTo(Warehouses::class);
+        return $this->belongsTo(Warehouses::class, 'warehouse_id','id');
     }
 
     public function category()
