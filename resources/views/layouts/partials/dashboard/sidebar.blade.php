@@ -47,8 +47,17 @@
             </a>
         </li>
         @endcanany
-        @canany(['view admin dashboard' , 'view company dashboard'])
+        @can('view admin dashboard')
         <li class="c-sidebar-nav-title">Products</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{route('dashboard.all_products.index')}}">
+                <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-inbox" />
+                All Products
+            </a>
+        </li>
+        @endcan
+        @canany(['view admin dashboard' , 'view company dashboard'])
+        <li class="c-sidebar-nav-title">Products Category</li>
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{route('dashboard.category.index')}}">
                 <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-library" />
@@ -56,6 +65,8 @@
             </a>
         </li>
         @endcanany
+
+
         <li class="c-sidebar-nav-title">Account</li>
         @canany(['view company dashboard','view supplier dashboard','view shopkeeper dashboard'])
         <li class="c-sidebar-nav-item">

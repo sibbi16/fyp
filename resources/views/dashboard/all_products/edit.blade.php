@@ -4,10 +4,7 @@
     </x-slot>
     <x-slot name="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Home</a></li>
-        @canany(['view admin dashboard', 'view company dashboard'])
-        <li class="breadcrumb-item"><a href="{{route('dashboard.warehouses.index')}}">Warehouses</a></li>
-        <li class="breadcrumb-item"><a href="{{route('dashboard.warehouses.products.index',$warehouse->id)}}">Products</a></li>
-        @endcanany
+        <li class="breadcrumb-item"><a href="{{route('dashboard.all_products.index')}}">Products</a></li>
         <li class="breadcrumb-item active">Edit</li>
     </x-slot>
     <div>
@@ -16,16 +13,9 @@
                 <div class="card">
                     <h2 class="px-3 pt-3">Product Information</h2>
                     <div class="card-body">
-                        <form method="POST" action="{{route('dashboard.warehouses.products.update', $product->slug)}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('dashboard.all_products.update',$product->slug)}}" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <label for="id">Warehouse Name</label>
-                                    <input type="text" readonly value="{{$warehouse->warehouse_name}}" class="form-control">
-                                    <input type="hidden" value="{{$warehouse->id}}" class="form-control" name="warehouse_id">
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -108,8 +98,5 @@
             </div>
         </div>
     </div>
-    <x-slot name="scripts">
-
-    </x-slot>
 </x-dashboard-layout>
 

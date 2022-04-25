@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsController;
@@ -43,13 +44,14 @@ Route::middleware(['auth'])->name('dashboard.')->group(function(){
         Route::match(['put', 'patch'],'/{warehouse:warehouse_name}', [WarehousesController::class, 'update'])->name('update')->middleware('permission:view admin dashboard|view company dashboard');
         Route::delete('/{warehouse:warehouse_name}', [WarehousesController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard|view company dashboard');
              Route::prefix('products')->name('products.')->group(function () {
+                Route::get('/all-products', [ProductsController::class, 'all_products'])->name('all-products');
                 Route::get('/{warehouse}', [ProductsController::class, 'index'])->name('index')->middleware('permission:view admin dashboard|view company dashboard');
                 Route::get('/create/{warehouse}', [ProductsController::class, 'create'])->name('create')->middleware('permission:view admin dashboard|view company dashboard');
                 Route::post('/', [ProductsController::class, 'store'])->name('store');
-                Route::get('/{product:slug}', [ProductsController::class, 'show'])->name('show');
-                Route::get('/edit/{product:slug}', [ProductsController::class, 'edit'])->name('edit');
+                Route::get('/{product:slug}/{warehouse}', [ProductsController::class, 'show'])->name('show');
+                Route::get('/edit/{product:slug}/{warehouse}', [ProductsController::class, 'edit'])->name('edit');
                 Route::match(['put', 'patch'],'/{product:slug}', [ProductsController::class, 'update'])->name('update')->middleware('permission:view admin dashboard|view company dashboard');
-                Route::delete('/{product}', [ProductsController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard|view company dashboard');
+                Route::delete('/{product}/{warehouse}', [ProductsController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard|view company dashboard');
             });
     });
     Route::prefix('suppliers')->name('suppliers.')->group(function () {
@@ -68,6 +70,14 @@ Route::middleware(['auth'])->name('dashboard.')->group(function(){
         Route::get('/edit/{category:slug}', [CategoryController::class, 'edit'])->name('edit');
         Route::match(['put', 'patch'],'/{category:slug}', [CategoryController::class, 'update'])->name('update')->middleware('permission:view admin dashboard|view company dashboard');
         Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard|view company dashboard');
+    });
+    Route::prefix('all_products')->name('all_products.')->group(function () {
+        Route::get('/', [AllProductsController::class, 'index'])->name('index')->middleware('permission:view admin dashboard');
+        Route::get('/create', [AllProductsController::class, 'create'])->name('create')->middleware('permission:view admin dashboard');
+        Route::get('/{product:slug}', [AllProductsController::class, 'show'])->name('show');
+        Route::get('/edit/{product:slug}', [AllProductsController::class, 'edit'])->name('edit');
+        Route::match(['put', 'patch'],'/{product:slug}', [AllProductsController::class, 'update'])->name('update')->middleware('permission:view admin dashboard');
+        Route::delete('/{product}', [AllProductsController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard');
     });
 });
 
