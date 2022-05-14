@@ -56,6 +56,15 @@
             </a>
         </li>
         @endcan
+        @canany(['view admin dashboard','view company dashboard','view supplier dashboard'])
+        <li class="c-sidebar-nav-title">Orders</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{route('dashboard.orders.index')}}">
+                <x-core-ui-icon class="c-sidebar-nav-icon" name="cil-cart" />
+                Orders
+            </a>
+        </li>
+        @endcanany
         @canany(['view admin dashboard' , 'view company dashboard'])
         <li class="c-sidebar-nav-title">Products Category</li>
         <li class="c-sidebar-nav-item">

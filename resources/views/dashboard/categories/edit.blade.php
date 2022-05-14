@@ -32,6 +32,29 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row mb-4">
+                                <div class="col-lg-12">
+                                    <div class="custom-file">
+                                        <input type="file" name="image" multiple
+                                            class="custom-file-input form-control @error('image') is-invalid @enderror"
+                                            id="profileImage">
+                                        <label class="custom-file-label" for="profileImage">Category Image</label>
+                                    </div>
+                                </div>
+                                @error('image')
+                                <div>
+                                    <h6 class="text-danger">{{$message}}</h6>
+                                </div>
+                                @enderror
+                                <script>
+                                    const profileImage= document.getElementById('profileImage');
+                                    profileImage.addEventListener('change', e => {
+                                        if(profileImage.files.length > 0){
+                                            document.querySelector('label[for="profileImage"]').innerHTML =  profileImage.files[0].name;
+                                        }
+                                    })
+                                </script>
+                            </div>
 
                             <div class="mb-0">
                                 <div class="d-flex justify-content-between align-items-baseline">

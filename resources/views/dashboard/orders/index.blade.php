@@ -1,15 +1,15 @@
 <x-dashboard-layout>
     <x-slot name="pageTitle">
-       All Products
+        Orders
     </x-slot>
     <x-slot name="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">Home</a></li>
-        <li class="breadcrumb-item active">Product List</li>
+        <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Home</a></li>
+        <li class="breadcrumb-item active">Order List</li>
     </x-slot>
     <x-slot name="scripts">
         <script>
             $(document).ready(function() {
-                 $('#productList').DataTable();
+                $('#orderList').DataTable();
             });
         </script>
     </x-slot>
@@ -18,55 +18,70 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h1>Product Information</h1>
+                        <h1>Order Information</h1>
                         {{-- <a href="#" class="btn btn-primary text-white">Add Product</a> --}}
                     </div>
 
                     <div class="card-body">
-                        <table class="table table-striped table-responsive-lg" id="productList">
+                        <table class="table table-striped table-responsive-lg" id="orderList">
                             <thead>
                                 <tr>
                                     <th scope="col">Sr. #</th>
                                     <th scope="col" class="text-center">Image</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Price/RS</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Created On</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($products as $product)
+                                @foreach ($orders as $order)
                                 <tr>
                                     <td scope="row">{{ $loop->index + 1 }}</td>
                                     <td class="text-center">
                                         <div class="c-avatar">
-                                            <img class="c-avatar-img" src="{{ $product->product_image }}" alt="product image">
+                                            <img class="c-avatar-img" src="{{ $order->image_url }}" alt="order image">
                                         </div>
                                     </td>
                                     <td>
-                                        {{ $product->name }}
+                                        {{ $order->name }}
                                     </td>
                                     <td>
-                                        {{ $product->category->name }}
+                                        {{ $order->price }}
                                     </td>
                                     <td class="text-truncate" style="max-width: 100px;">
-                                        {{ $product->description }}
+                                        {{ $order->quantity }}
                                     </td>
                                     <td>
-                                        {{ $product->price }} PKR
+                                        {{ $order->total }} PKR
                                     </td>
+                                    @if ($order->status == false)
                                     <td>
-                                        {{$product->created_at->format('d M Y h:i A')}}
+                                        <span class="badge badge-danger p-2"><b>Pending</b> </span>
+                                    </td>
+                                    @else
+                                    <td>
+                                        <span class="badge badge-success"><b>Success</b></span>
+                                    </td>
+                                    @endif
+                                    <td>
+                                        {{ $order->created_at->format('d M Y h:i A') }}
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{route('dashboard.all_products.show',$product->slug)}}" class="btn btn-info">View</a>
-                                            <a href="{{route('dashboard.all_products.edit', $product->slug)}}" class="btn btn-warning text-white">Edit</a>
+                                            <form method="POST" action="{{route('dashboard.orders.complete-order', $order)}}">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit" class="btn btn-success">Completed</button>
+                                            </form>
+                                            <a href="#" class="btn btn-info">View</a>
+                                            <a href="#" class="btn btn-warning text-white">Edit</a>
                                             <button class="btn btn-danger" data-toggle="modal"
-                                                data-target="#deleteproductModel{{ $product->id }}">Delete</button>
+                                                data-target="#orderModel{{ $order->id }}">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -77,22 +92,22 @@
                 </div>
             </div>
         </div>
-        @foreach ($products as $product)
-        <div class="modal fade" id="deleteproductModel{{ $product->id }}" tabindex="-1"
-            aria-labelledby="deleteCategoryModalLabel_{{ $product->name }}" aria-hidden="true">
+        {{-- @foreach ($orders as $order)
+        <div class="modal fade" id="orderModel{{ $order->id }}" tabindex="-1"
+            aria-labelledby="deleteCategoryModalLabel_{{ $order->name }}" aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered" role="document">
-                <form class="modal-content" action="{{route('dashboard.all_products.destroy',$product->id)}}" method="POST">
+                <form class="modal-content" action="{{route('dashboard.all_orders.destroy',$order->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteCategoryModalLabel_{{ $product->name }}">Confirm delete user?
+                        <h5 class="modal-title" id="deleteCategoryModalLabel_{{ $order->name }}">Confirm delete user?
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete this Product <strong>[{{ $product->name }}]</strong> and all its
+                        <p>Are you sure you want to delete this order <strong>[{{ $order->name }}]</strong> and all its
                             associated data from the system?</p>
                         <p><strong><em>Note: </em>This action is not reversible!</strong></p>
                     </div>
@@ -103,6 +118,6 @@
                 </form>
             </div>
         </div>
-        @endforeach
+        @endforeach --}}
     </div>
 </x-dashboard-layout>

@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\Mobile\AuthController;
+use App\Http\Controllers\Mobile\CategoryController;
+use App\Http\Controllers\Mobile\OrderController;
+use App\Http\Controllers\Mobile\ProductController;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +18,20 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/register',[AuthController::class,'store']);
+Route::post('/login',[AuthController::class,'login']);
+Route::get('/test',[AuthController::class,'index']);
+Route::get('/categories',[CategoryController::class,'index']);
+Route::get('/products',[ProductController::class,'index']);
+Route::prefix('orders')->name('dashboard.orders.')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('index');
+    Route::post('/', [OrderController::class, 'store'])->name('store');
+    Route::match(['put', 'patch'],'/complete-order{order}', [OrderController::class, 'completeOrder'])->name('complete-order');
+    Route::get('/{order}', [OrderController::class, 'show'])->name('show');
+    // Route::get('/edit/{product:slug}', [AllProductsController::class, 'edit'])->name('edit');
+    // Route::delete('/{product}', [AllProductsController::class, 'destroy'])->name('destroy')->middleware('permission:view admin dashboard');
+});
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('/logout',[AuthController::class,'destroy']);
 });

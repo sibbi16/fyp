@@ -26,6 +26,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center">Sr. #</th>
+                                    <th scope="col" class="text-center">Image</th>
                                     <th scope="col" class="text-center">Name</th>
                                     <th scope="col" class="text-center">Created By</th>
                                     <th scope="col" class="text-center">Created On</th>
@@ -36,6 +37,11 @@
                                 @foreach ($categories as $category)
                                 <tr>
                                     <td scope="row" class="text-center">{{ $loop->index + 1 }}</td>
+                                    <td class="text-center">
+                                        <div class="c-avatar">
+                                            <img class="c-avatar-img" src="{{ $category->image_url }}" alt="category image">
+                                        </div>
+                                    </td>
                                     <td class="text-center">
                                         <b>{{ $category->name }}</b>
                                     </td>
@@ -61,22 +67,22 @@
                 </div>
             </div>
         </div>
-        {{-- @foreach ($categories as $category)
-        <div class="modal fade" id="deletesupplierModel{{ $supplier->id }}" tabindex="-1"
-            aria-labelledby="deleteCategoryModalLabel_{{ $supplier->name }}" aria-hidden="true">
+        @foreach ($categories as $category)
+        <div class="modal fade" id="deletecategoryModel{{ $category->id }}" tabindex="-1"
+            aria-labelledby="deleteCategoryModalLabel_{{ $category->name }}" aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered" role="document">
-                <form class="modal-content" action="{{ route('dashboard.suppliers.destroy', $supplier->id) }}" method="POST">
+                <form class="modal-content" action="{{ route('dashboard.category.destroy', $category->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteCategoryModalLabel_{{ $supplier->name }}">Confirm delete supplier?
+                        <h5 class="modal-title" id="deleteCategoryModalLabel_{{ $category->name }}">Confirm delete category?
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete this Supplier <strong>[{{ $supplier->name }}]</strong> and all its
+                        <p>Are you sure you want to delete this category <strong>[{{ $category->name }}]</strong> and all its
                             associated data from the system?</p>
                         <p><strong><em>Note: </em>This action is not reversible!</strong></p>
                     </div>
@@ -87,7 +93,7 @@
                 </form>
             </div>
         </div>
-        @endforeach --}}
+        @endforeach
     </div>
 
 

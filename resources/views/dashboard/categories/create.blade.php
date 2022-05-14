@@ -21,7 +21,7 @@
                                         <div class="form-group">
                                             <label for="name">Category Name</label>
                                             <input type="text" value="{{old('name')}}" class="form-control"
-                                                placeholder="First Name" name="name">
+                                                placeholder="Category Name" name="name">
                                         </div>
                                     </div>
                                     @error('name')
@@ -31,13 +31,32 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row mb-4">
+                                <div class="col-lg-12">
+                                    <div class="custom-file">
+                                        <input type="file" name="image" multiple
+                                            class="custom-file-input form-control @error('image') is-invalid @enderror"
+                                            id="profileImage">
+                                        <label class="custom-file-label" for="profileImage">Category Image</label>
+                                    </div>
+                                </div>
+                                @error('image')
+                                <div>
+                                    <h6 class="text-danger">{{$message}}</h6>
+                                </div>
+                                @enderror
+                                <script>
+                                    const profileImage= document.getElementById('profileImage');
+                                    profileImage.addEventListener('change', e => {
+                                        if(profileImage.files.length > 0){
+                                            document.querySelector('label[for="profileImage"]').innerHTML =  profileImage.files[0].name;
+                                        }
+                                    })
+                                </script>
+                            </div>
 
                             <div class="mb-0">
                                 <div class="d-flex justify-content-between align-items-baseline">
-                                    {{-- <a class="text-muted me-3 text-decoration-none" href="{{ route('login') }}">
-                                        {{ __('Already registered?') }}
-                                    </a> --}}
-
                                     <x-button class="text-white">
                                         {{ __('Create Category') }}
                                     </x-button>
