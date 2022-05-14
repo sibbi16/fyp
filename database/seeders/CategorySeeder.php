@@ -21,41 +21,49 @@ class CategorySeeder extends Seeder
                 'user_id' => $admin_id,
                 'name' => 'Uncategories',
                 'slug' => 'uncategories',
+                'image' => 'null',
             ],
             [
                 'user_id' => $admin_id,
                 'name' => 'Oil',
                 'slug' => 'oil',
+                'image'=>'null',
             ],
             [
                 'user_id' => $admin_id,
                 'name' => 'Ghee',
                 'slug' => 'ghee',
+                'image'=>'null',
             ],
             [
                 'user_id' => $admin_id,
                 'name' => 'Juice',
                 'slug' => 'juice',
+                'image'=>'null',
             ],
             [
                 'user_id' => $admin_id,
-                'name' => 'Frozen Foods',
-                'slug' => 'frozen-foods',
+                'name' => 'Frozen',
+                'slug' => 'frozen',
+                'image'=>'null',
             ],
             [
                 'user_id' => $admin_id,
                 'name' => 'Dairy',
                 'slug' => 'dairy',
+                'image'=>'null',
             ],
             [
                 'user_id' => $admin_id,
                 'name' => 'Bread Bakery',
                 'slug' => 'bread-bakery',
+                'image'=>'null',
             ],
             [
                 'user_id' => $admin_id,
                 'name' => 'Meat',
                 'slug' => 'meat',
+                'image'=>'null',
             ],
         ];
 

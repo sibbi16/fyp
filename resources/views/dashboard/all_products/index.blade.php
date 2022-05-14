@@ -19,7 +19,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h1>Product Information</h1>
-                        <a href="#" class="btn btn-primary text-white">Add Product</a>
+                        {{-- <a href="#" class="btn btn-primary text-white">Add Product</a> --}}
                     </div>
 
                     <div class="card-body">

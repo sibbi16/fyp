@@ -32,12 +32,15 @@ class AuthController extends Controller
         }
 
         $token =$user->createToken('my_app_token')->plainTextToken;
-
-        $data=[
-            'user'=>$user,
-            'token'=>$token
+        $data = [
+            'status'=> 'Logged in',
+            'message'=> "User Successfully Validated",
+            'data' => [
+                'user'=>$user,
+                'token'=>$token,
+            ]
         ];
-        return response($data,201);
+        return response($data);
     }
 
     public function store(Request $request)
@@ -65,8 +68,12 @@ class AuthController extends Controller
         $token =$user->createToken('my_app_token')->plainTextToken;
         $user->assignRole('shopkeeper');
         $data=[
-            'user'=>$user,
-            'token'=>$token
+            'status'=> 'Created Succesfully',
+            'message'=>'User Created Succesfully',
+            'data' => [
+                'user'=>$user,
+                'token'=>$token,
+            ]
         ];
         return response($data,201);
     }
@@ -74,9 +81,10 @@ class AuthController extends Controller
     public function destroy()
     {
         auth()->user()->tokens()->delete();
-        return [
-            'message' => 'Logged out'
+        $data =[
+            'message' => "Logged out",
         ];
+        return response($data);
     }
 
 

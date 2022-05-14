@@ -18,6 +18,7 @@ class CreateProductCategoriesTable extends Migration
             $table->foreignId('user_id');
             $table->string('name', 255);
             $table->string('slug',255);
+            $table->text('image');
             $table->timestamps();
         });
     }
