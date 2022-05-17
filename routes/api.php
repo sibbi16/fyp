@@ -23,6 +23,8 @@ Route::post('/login',[AuthController::class,'login']);
 Route::get('/test',[AuthController::class,'index']);
 Route::get('/categories',[CategoryController::class,'index']);
 Route::get('/products',[ProductController::class,'index']);
+Route::get('/products/{id}',[ProductController::class,'showProducts']);
+
 Route::prefix('orders')->name('dashboard.orders.')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('index');
     Route::post('/', [OrderController::class, 'store'])->name('store');

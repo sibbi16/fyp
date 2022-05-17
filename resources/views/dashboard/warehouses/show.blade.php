@@ -46,6 +46,10 @@
                                     <th scope="col">Company Landline</th>
                                     <td scope="col">{{$warehouse->company->company_landline ?? "Null"}}</td>
                                   </tr>
+                                  <tr>
+                                    <th scope="col">Created on</th>
+                                    <td scope="col"> {{$warehouse->created_at->format('d M Y h:i A')}}</td>
+                                  </tr>
                             </tbody>
                           </table>
                     </div>

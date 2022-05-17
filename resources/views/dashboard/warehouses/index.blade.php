@@ -31,7 +31,6 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">Phone</th>
-                                    <th scope="col">Created On</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -47,14 +46,11 @@
                                     <td>
                                         {{ $warehouse->warehouse_name }}
                                     </td>
-                                    <td>
+                                    <td class="text-truncate" style="max-width: 70px">
                                         {{ $warehouse->warehouse_address }}
                                     </td>
                                     <td>
                                         {{ $warehouse->warehouse_phone }}
-                                    </td>
-                                    <td>
-                                        {{$warehouse->created_at->format('d M Y h:i A')}}
                                     </td>
                                     <td>
                                         <div class="btn-group">
