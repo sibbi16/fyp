@@ -10,21 +10,20 @@ class Orders extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'name',
-        'price',
-        'quantity',
-        'total',
-        'image',
+        'user_id',
+        'total_price',
+        'pickup_person_name',
+        'pickup_person_phone',
+        'shipping_address',
         'status',
     ];
 
     protected $casts=[
-        'image' => 'array',
         'status' =>'boolean',
     ];
 
-    public function getImageUrlAttribute()
+    public function products()
     {
-        return Storage::url($this->image['path']);
+        return $this->hasMany(OrderProducts::class,'order_id','id');
     }
 }

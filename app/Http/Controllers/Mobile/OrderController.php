@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderProducts;
 use App\Models\Orders;
 use Dotenv\Repository\RepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class OrderController extends Controller
 {
@@ -19,44 +21,39 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=> ['required','max:255','string'],
-            'price'=> ['required','string'],
-            'quantity'=> ['required','string'],
-            'total'=> ['required','string'],
-            'image'=> ['required','mimes:png,jpg,jpeg'],
-            'status' => ['nullable'],
+
+        $data = $request->validate([
+            'total_price'=> ['required','string'],
+            'pickup_person_name'=> ['required','string'],
+            'pickup_person_phone'=> ['required','string'],
+            'shipping_address'=> ['required','string'],
+            'products' => ['required', 'array', 'min:1'],
+            'products.*.product_id' => ['required', 'numeric', Rule::exists('products', 'id')],
+            'products.*.name' => ['required', 'string', Rule::exists('products', 'name')],
+            'products.*.price' => ['required', 'string', Rule::exists('products', 'price')],
+            'products.*.quantity' => ['required', 'numeric', 'min:1'],
         ]);
-
-        if($request->hasFile('image')){
-            $extension =$request->file('image')->extension();
-            $name = $request->file('image')->getClientOriginalName();
-            $file_path = $request->file('image')->store('order_images/',['disk'=>'public']);
-
-            if($file_path){
-                $order_image = [
-                    'ext'=>$extension,
-                    'name'=>$name,
-                    'path'=>$file_path,
-                ];
-            }
-        }
+        // return response()->json(['message' => 'Order details recieved', 'products' => $request->all()]);
 
         $order = Orders::create([
-            'name'=>$request->name,
-            'price'=>$request->price,
-            'quantity'=>$request->quantity,
-            'total'=>$request->total,
-            'image'=>$order_image,
+            'total_price'=>$request->total_price,
+            'pickup_person_name'=>$request->pickup_person_name,
+            'pickup_person_phone'=>$request->pickup_person_phone,
+            'shipping_address'=>$request->shipping_address,
+            'user_id'=>auth()->user()->id,
             'status'=>false,
         ]);
+        foreach ($data['products'] as $product) {
+            $product['order_id'] = $order->id;
+            OrderProducts::create($product);
+        }
 
         $data=[
             'status'=> '200',
             'message' => 'success Order created successfully',
             'order' => $order,
         ];
-        return response($data);
+        return response()->json($data);
     }
 
     public function completeOrder(Orders $order)

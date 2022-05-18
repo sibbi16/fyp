@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mobile;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
@@ -78,9 +79,10 @@ class AuthController extends Controller
         return response($data,201);
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
         auth()->user()->tokens()->delete();
+        Auth::guard('web')->logout();
         $data =[
             'message' => "Logged out",
         ];

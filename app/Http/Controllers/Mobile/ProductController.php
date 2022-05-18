@@ -18,8 +18,19 @@ class ProductController extends Controller
         ];
         return response($data);
     }
-    public function showProducts($id)
+    public function showProducts(ProductCategory $category)
     {
+        return response($category);
+        $category = ProductCategory::where('id',$id)->get();
+        return response($category);
+        // $products = Products::where('category_id','=',$id)->get();
+
+        if($category === null){
+            $data['status'] = "Error 404";
+            $data['message'] = "Could not find products";
+        }else{
+
+        }
         $data = [
             'status'=> 'Success 200',
             'message'=> 'Get all Products',

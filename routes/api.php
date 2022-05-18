@@ -23,11 +23,11 @@ Route::post('/login',[AuthController::class,'login']);
 Route::get('/test',[AuthController::class,'index']);
 Route::get('/categories',[CategoryController::class,'index']);
 Route::get('/products',[ProductController::class,'index']);
-Route::get('/products/{id}',[ProductController::class,'showProducts']);
+Route::get('/products/{category}',[ProductController::class,'showProducts']);
 
 Route::prefix('orders')->name('dashboard.orders.')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('index');
-    Route::post('/', [OrderController::class, 'store'])->name('store');
+    Route::post('/', [OrderController::class, 'store'])->name('store')->middleware('auth:sanctum');
     Route::match(['put', 'patch'],'/complete-order{order}', [OrderController::class, 'completeOrder'])->name('complete-order');
     Route::get('/{order}', [OrderController::class, 'show'])->name('show');
     // Route::get('/edit/{product:slug}', [AllProductsController::class, 'edit'])->name('edit');
